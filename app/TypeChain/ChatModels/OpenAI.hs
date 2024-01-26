@@ -3,7 +3,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 
-module Minichain.ChatModels.OpenAI (GPT35Turbo(..), mkGPT35Turbo) where
+module TypeChain.ChatModels.OpenAI (GPT35Turbo(..), mkGPT35Turbo) where
 
 import Control.Lens hiding ((.=))
 import Control.Monad.Catch
@@ -15,7 +15,7 @@ import Data.ByteString.Lazy (ByteString)
 
 import GHC.Generics (Generic)
 
-import Minichain.ChatModels.Types
+import TypeChain.ChatModels.Types
 
 import Network.HTTP.Simple
 import Network.HTTP.Conduit

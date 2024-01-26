@@ -4,8 +4,8 @@ module Main where
 
 import Control.Lens
 
-import Minichain.ChatModels.Types 
-import Minichain.ChatModels.OpenAI
+import TypeChain.ChatModels.Types 
+import TypeChain.ChatModels.OpenAI
 
 import DotEnv
 
@@ -15,7 +15,7 @@ import DotEnv
 toUserMessage :: Message -> Message 
 toUserMessage msg = msg { _role = User }
 
-convo :: Minichain (GPT35Turbo, GPT35Turbo) [Message]
+convo :: TypeChain (GPT35Turbo, GPT35Turbo) [Message]
 convo = do 
     let prompt = "Why does 1 + 1 = 2?"
 

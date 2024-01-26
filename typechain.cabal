@@ -1,5 +1,5 @@
 cabal-version:      2.4
-name:               minichain
+name:               typechain
 version:            0.1.0.0
 
 -- A short (one-line) description of the package.
@@ -21,11 +21,11 @@ maintainer:         adam.brohl.w@gmail.com
 -- category:
 extra-source-files: CHANGELOG.md
 
-executable minichain-exe
+executable typechain-exe
     main-is:          Main.hs
     other-modules:    DotEnv
-                      Minichain.ChatModels.Types
-                      Minichain.ChatModels.OpenAI
+                      TypeChain.ChatModels.Types
+                      TypeChain.ChatModels.OpenAI
 
 
     -- LANGUAGE extensions used by modules in this package.
@@ -35,8 +35,8 @@ executable minichain-exe
     default-language: Haskell2010
 
 library 
-    exposed-modules:  Minichain.ChatModels.Types
-                      Minichain.ChatModels.OpenAI
+    exposed-modules:  TypeChain.ChatModels.Types
+                      TypeChain.ChatModels.OpenAI
     build-depends:    base ^>=4.17.2.0, aeson, unordered-containers, bytestring, http-conduit, exceptions, mtl, lens
     hs-source-dirs:   app
     default-language: Haskell2010

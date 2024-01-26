@@ -1,4 +1,4 @@
-# Minichain
+# TypeChain
 
 An attempt to recreate [Langchain](https://www.langchain.com/) in Haskell.
 
@@ -15,10 +15,10 @@ module Main where
 
 import DotEnv
 
-import Minichain.ChatModels.Types
-import Minichain.ChatModels.OpenAI
+import TypeChain.ChatModels.Types
+import TypeChain.ChatModels.OpenAI
 
-askOnePlusOne :: Minichain GPT35Turbo Message
+askOnePlusOne :: TypeChain GPT35Turbo Message
 askOnePlusOne = predict "What is 1 + 1?"
 
 main :: IO ()
@@ -45,7 +45,7 @@ Let's say we want to ask our model what 1 + 1 is after setting a rule that
 create the model. Here is an example:
 
 ```haskell
-askOnePlusOne :: Minichain GPT35Turbo [Message]
+askOnePlusOne :: TypeChain GPT35Turbo [Message]
 askOnePlusOne = predict "What is 1 + 1?"
 
 main :: IO ()
@@ -69,7 +69,7 @@ assistant: According to the new rule, 1 + 1 equals 3.
 ## Model Prediction with Multiple Models
 
 Let's say we want to have some sort of interaction between models. Instead 
-of passing in a single model to the `Minichain` type, we can pass in any 
+of passing in a single model to the `TypeChain` type, we can pass in any 
 datatype given that we have the appropriate lenses to access the individual 
 models. In this example, we will use a tuple with the `_1` and `_2` lenses to
 represent the two different models.
@@ -84,7 +84,7 @@ import Control.Lens
 toUserMessage :: Message -> Message 
 toUserMessage msg = msg { _role = User }
 
-convo :: Minichain (GPT35Turbo, GPT35Turbo) [Message]
+convo :: TypeChain (GPT35Turbo, GPT35Turbo) [Message]
 convo = do 
     let prompt = "Why does 1 + 1 = 2?"
 

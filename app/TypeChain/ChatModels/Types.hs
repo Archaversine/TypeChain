@@ -5,7 +5,8 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module Minichain.ChatModels.Types ( Minichain 
+module TypeChain.ChatModels.Types ( TypeChain
+                                  , TypeChainT
                                   , ApiKey 
                                   , Role(..)
                                   , Message(..), role, content
@@ -24,7 +25,8 @@ import Data.Kind (Constraint)
 
 import GHC.Generics (Generic)
 
-type Minichain model = StateT model IO
+type TypeChain model = StateT model IO
+type TypeChainT = StateT
 
 type ApiKey = ByteString
 
