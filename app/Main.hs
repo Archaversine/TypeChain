@@ -4,8 +4,7 @@ module Main where
 
 import Control.Lens
 
-import TypeChain.ChatModels.Types 
-import TypeChain.ChatModels.OpenAI
+import TypeChain.ChatModels
 
 import DotEnv
 
