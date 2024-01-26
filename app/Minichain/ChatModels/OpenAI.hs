@@ -3,7 +3,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 
-module Minichain.ChatModels.OpenAI where
+module Minichain.ChatModels.OpenAI (GPT35Turbo(..), mkGPT35Turbo) where
 
 import Control.Lens hiding ((.=))
 import Control.Monad.Catch
@@ -28,27 +28,25 @@ instance ToJSON GPT35Turbo where
                                              , "messages"    .= msgs
                                              ]
 
+-- | A chat model that uses OpenAI's GPT-3.5-Turbo model
 data GPT35Turbo = GPT35Turbo { key         :: ApiKey 
                              , messages    :: [Message]
                              , temperature :: Float
                              }
 
-data Usage = Usage { prompt_tokens     :: Int 
-                   , completion_tokens :: Int
-                   , total_tokens      :: Int
-                   } deriving Generic
-
+-- | A list of responses from OpenAI's GPT-3.5-Turbo model
 data Choices = Choices { message       :: Message 
                        , finish_reason :: String 
                        , index         :: Int
                        } deriving Generic
 
+instance FromJSON Choices 
+
+-- | Minimal JSON response datatype from OpenAI's GPT-3.5-Turbo model
 data OpenAIResponse = OpenAIResponse { model   :: String
                                      , choices :: [Choices]
                                      } deriving Generic
 
-instance FromJSON Usage 
-instance FromJSON Choices 
 
 instance FromJSON OpenAIResponse where 
     parseJSON = withObject "OpenAIResponse" $ \o -> do 
@@ -56,6 +54,7 @@ instance FromJSON OpenAIResponse where
         choices <- o .: "choices"
         return $ OpenAIResponse model choices
 
+-- | Create a GPT35Turbo model with default values
 mkGPT35Turbo :: ApiKey -> [Message] -> GPT35Turbo
 mkGPT35Turbo k messages = GPT35Turbo k messages 0.9
 
