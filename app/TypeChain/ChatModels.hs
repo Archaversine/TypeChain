@@ -1,9 +1,9 @@
 module TypeChain.ChatModels ( module TypeChain.ChatModels.Types
-                            , module TypeChain.ChatModels.Prompts
+                            , module TypeChain.ChatModels.PromptTemplate
                             , module TypeChain.ChatModels.OpenAI
                             ) where
 
 import TypeChain.ChatModels.Types 
-import TypeChain.ChatModels.Prompts
+import TypeChain.ChatModels.PromptTemplate
 import TypeChain.ChatModels.OpenAI
 

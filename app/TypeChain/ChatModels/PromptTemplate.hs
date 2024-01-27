@@ -2,7 +2,7 @@
 {-# LANGUAGE ViewPatterns #-}
 {-# LANGUAGE TemplateHaskell #-}
 
-module TypeChain.ChatModels.Prompts (makeTemplate, user, assistant, system) where
+module TypeChain.ChatModels.PromptTemplate (makeTemplate, user, assistant, system) where
 
 import Data.List (nub)
 
