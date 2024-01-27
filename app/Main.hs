@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 module Main where
 
@@ -7,6 +8,11 @@ import Control.Lens
 import TypeChain.ChatModels
 
 import DotEnv
+
+chatPrompt :: String -> String -> String -> [Message]
+chatPrompt = $(makeTemplate [ (system, "You are a helpful assistant that translates {from} to {to}.")
+                            , (user, "{text}")
+                            ])
  
 -- Helper function to turn assistant messages into user messages 
 -- We do this so we don't confuse the model and make it think it's talking 

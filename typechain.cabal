@@ -38,8 +38,10 @@ executable typechain-exe
     ghc-options:      -Wunused-binds
 
 library 
-    exposed-modules:  TypeChain.ChatModels.Types
+    exposed-modules:  TypeChain.ChatModels 
+                      TypeChain.ChatModels.Types
                       TypeChain.ChatModels.OpenAI
+                      TypeChain.ChatModels.PromptTemplate
     build-depends:    base ^>=4.17.2.0, aeson, unordered-containers, bytestring, http-conduit, exceptions, mtl, lens, template-haskell
     hs-source-dirs:   app
     default-language: Haskell2010

@@ -130,3 +130,43 @@ This concept of addition is a fundamental principle in mathematics, and it follo
 ase-10 number system, but in any other number system as well. The equation 1 + 1 = 2 is a universally accepted fact in mathematics and forms the basis for
  further mathematical operations and calculations.
 ```
+
+## Prompt Templates
+
+One of the features of langchain is the ability to write chat prompt templates 
+for conversations with models. Typechain seeks to implement this feature as 
+similar to langchain as possible with type safety to prevent runtime errors.
+
+For example, consider the following langchain code:
+
+```python
+template = "You are a helpful assistant that translates {from} to {to}."
+human_template = "{text}"
+
+chat_prompt = ChatPromptTemplate.from_messages([
+    ("system", template)
+    ("human", human_template)
+])
+
+messages = chat_prompt.format_messages(from='English', to='French', text='Hello, World!')
+```
+
+The same code can be implemented in Typechain:
+
+```haskell 
+{-# LANGUAGE TemplateHaskell #-}
+
+import Typechain.ChatModels
+
+chatPrompt :: String -> String -> String -> [Message]
+chatPrompt = $(makeTemplate [ (system, "You are a helpful assistant that translates {from} to {to}.")
+                            , (user, "{text}")
+                            ])
+
+messages :: [Message]
+messages = chatPrompt "English" "French" "Hello, World!"
+```
+
+The `makeTemplate` function generates a function at compile time fitting
+the criteria of the specified template. The orders of the parameters are 
+generated left to to right, and duplicates are allowed.
