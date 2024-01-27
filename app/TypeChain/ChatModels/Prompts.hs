@@ -1,26 +1,42 @@
-{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE ViewPatterns #-}
+{-# LANGUAGE TemplateHaskell #-}
 
-module TypeChain.ChatModels.Prompts (makeTemplate) where
+module TypeChain.ChatModels.Prompts (makeTemplate, user, assistant, system) where
 
 import Data.List (nub)
 
 import Language.Haskell.TH
 
+import TypeChain.ChatModels.Types
+
 data TemplateToken = ConstString String | Var String deriving Eq
 
--- | Template Function Examples:
--- input: @"Your name is {name}."@  
--- output: @\name -> "Your name is " ++ name ++ "."@
---
--- input: @"Your name is {name} and you are {age} years old."@
--- output: @\name age -> "Your name is " ++ name ++ " and you are " ++ age ++ " years old."@
-makeTemplate :: String -> Q Exp
-makeTemplate str = do 
-    let tokens = parseTemplateTokens str
-        names  = nub $ getVarTokens tokens
+user :: Q Exp 
+user = [| UserMessage |]
 
-    lamE (map (varP . mkName) names) (tokensToExpr tokens)
+assistant :: Q Exp 
+assistant = [| AssistantMessage |] 
+
+system :: Q Exp 
+system = [| SystemMessage |]
+
+makeTemplate :: [(Q Exp, String)] -> Q Exp
+makeTemplate xs = do 
+    (exps, ps) <- mapAndUnzipM toTemplate xs 
+    let params = nub $ concat ps
+    
+    lamE (map varP params) $ listE exps
+
+toTemplate :: (Q Exp, String) -> Q (Q Exp, [Name]) 
+toTemplate (f, str) = do 
+    let tokens = parseTemplateTokens str
+        names  = map mkName $ nub $ getVarTokens tokens
+        params = map varP names
+        func   = lamE params (appE f $ tokensToExpr tokens)
+        expr   = foldl appE func (map varE names)
+
+    return (expr, names)
 
 parseTemplateTokens :: String -> [TemplateToken]
 parseTemplateTokens [] = [] 
@@ -38,5 +54,3 @@ tokensToExpr :: [TemplateToken] -> Q Exp
 tokensToExpr [] = [| "" |]
 tokensToExpr (ConstString x : xs) = [| x ++ $(tokensToExpr xs) |]
 tokensToExpr (Var x : xs) = appE [| (++) |] (varE (mkName x)) `appE` tokensToExpr xs
-    where name = mkName x
-

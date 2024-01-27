@@ -11,6 +11,8 @@ module TypeChain.ChatModels.Types ( TypeChain
                                   , Role(..)
                                   , Message(..), role, content
                                   , pattern UserMessage 
+                                  , pattern AssistantMessage 
+                                  , pattern SystemMessage
                                   , ChatModel(..) 
                                   , module Control.Monad.State
                                   ) where 
@@ -52,6 +54,14 @@ makeLenses ''Message
 -- | Pattern synonym for creating a @Message@ with @User@ role
 pattern UserMessage :: String -> Message 
 pattern UserMessage s = Message User s
+
+-- | Pattern synonym for creating a @Message@ with @Assistant@ role
+pattern AssistantMessage :: String -> Message 
+pattern AssistantMessage s = Message Assistant s 
+
+-- | Pattern synonym for creating a @Message@ with @System@ role
+pattern SystemMessage :: String -> Message 
+pattern SystemMessage s = Message System s
 
 instance ToJSON Role where 
     toJSON = \case 

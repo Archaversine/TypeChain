@@ -7,7 +7,7 @@ import Control.Lens
 import TypeChain.ChatModels
 
 import DotEnv
-
+ 
 -- Helper function to turn assistant messages into user messages 
 -- We do this so we don't confuse the model and make it think it's talking 
 -- to itself
