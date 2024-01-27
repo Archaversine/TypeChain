@@ -30,10 +30,11 @@ convo = do
 
     -- Ask model 1 why 1 + 1 = 2 
     -- We do this to start a conversation between the two models
-    response1 <- _1 `predicts` "Why does 1 + 1 = 2?"
+    -- Type annotation needed because of -XOverloadedStrings
+    response1 <- _1 `predicts` ("Why does 1 + 1 = 2?" :: String)
 
     -- Feed model 1's response into model2
-    _2 `predictsMsgs` map toUserMessage response1
+    _2 `predicts` map toUserMessage response1
 
 main :: IO ()
 main = do 

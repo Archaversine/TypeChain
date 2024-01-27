@@ -12,6 +12,7 @@ import Control.Monad.State
 
 import Data.Aeson
 import Data.ByteString.Lazy (ByteString)
+import Data.Functor (($>))
 
 import GHC.Generics (Generic)
 
@@ -70,7 +71,9 @@ mkGPT35TurboRequest gpt@(GPT35Turbo k msgs temp) = do
                      }
 
 instance ChatModel GPT35Turbo where 
-    predictsMsgs model msgs = do 
+    predicts model m = do 
+        let msgs = toMsgList m
+
         addMsgsTo model msgs
 
         gpt <- gets (view model)
@@ -78,7 +81,7 @@ instance ChatModel GPT35Turbo where
         res <- httpLBS req
 
         case decode @OpenAIResponse (responseBody res) of 
-            Nothing -> liftIO $ putStrLn "WARNING: Failed to decode OpenAIResponse" >> pure []
-            Just r  -> let newMsgs = map message (choices r) in addMsgsTo model newMsgs >> pure newMsgs
+            Nothing -> liftIO $ putStrLn "WARNING: Failed to decode OpenAIResponse" $> []
+            Just r  -> let newMsgs = map message (choices r) in addMsgsTo model newMsgs $> newMsgs
 
-    addMsgsTo model msgs = model %= \m -> m { messages = messages m <> msgs }
+    addMsgsTo model msgs = model %= \m -> m { messages = messages m <> toMsgList msgs }

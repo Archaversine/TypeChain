@@ -46,7 +46,7 @@ create the model. Here is an example:
 
 ```haskell
 askOnePlusOne :: TypeChain GPT35Turbo [Message]
-askOnePlusOne = predict "What is 1 + 1?"
+askOnePlusOne = predict ("What is 1 + 1?" :: String)
 
 main :: IO ()
 main = do 
@@ -94,10 +94,10 @@ convo = do
 
     -- Ask model 1 why 1 + 1 = 2 
     -- We do this to start a conversation between the two models
-    response1 <- _1 `predicts` "Why does 1 + 1 = 2?"
+    response1 <- _1 `predicts` ("Why does 1 + 1 = 2?" :: String)
 
     -- Feed model 1's response into model2
-    response2 <- _2 `predictsMsgs` map toUserMessage response1
+    response2 <- _2 `predicts` map toUserMessage response1
 
     return response2
 

@@ -4,6 +4,7 @@
 {-# LANGUAGE PatternSynonyms #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE FlexibleInstances #-}
 
 module TypeChain.ChatModels.Types ( TypeChain
                                   , TypeChainT
@@ -13,6 +14,7 @@ module TypeChain.ChatModels.Types ( TypeChain
                                   , pattern UserMessage 
                                   , pattern AssistantMessage 
                                   , pattern SystemMessage
+                                  , MsgList(..)
                                   , ChatModel(..) 
                                   , module Control.Monad.State
                                   ) where 
@@ -87,34 +89,31 @@ instance FromJSON Message where
         content <- o .: "content"
         return $ Message role content
 
+class MsgList a where 
+    toMsgList :: a -> [Message]
+
+instance MsgList String where 
+    toMsgList = toMsgList . UserMessage
+
+instance MsgList Message where 
+    toMsgList = pure
+
+instance MsgList [Message] where 
+    toMsgList = id
+
 -- | A class for Chat Models
 class ChatModel a where 
     -- | Predict for current and only model
-    predict :: (MonadIO m, MonadThrow m) => String -> StateT a m [Message]
+    predict :: (MonadIO m, MonadThrow m, MsgList msg) => msg -> StateT a m [Message]
+    -- Implicit type signature: 
     predict = predicts id
 
     -- | Predict for a specific model via lens
-    predicts :: (MonadIO m, MonadThrow m) => Lens' s a -> String -> StateT s m [Message]
-    predicts f = predictsMsg f . UserMessage
-
-    -- | Predict Message type for current and only model
-    predictMsg :: (MonadIO m, MonadThrow m) => Message -> StateT a m [Message]
-    predictMsg = predictsMsg id
-
-    -- | Predict Message type for specific model
-    predictsMsg :: (MonadIO m, MonadThrow m) => Lens' s a -> Message -> StateT s m [Message]
-    predictsMsg f msg = predictsMsgs f [msg]
-
-    -- | Predict Multiple Message types for current and only model
-    predictMsgs :: (MonadIO m, MonadThrow m) => [Message] -> StateT a m [Message]
-    predictMsgs = predictsMsgs id
-
-    -- | Predict Multiple Message types for specific model
-    predictsMsgs :: (MonadIO m, MonadThrow m) => Lens' s a -> [Message] -> StateT s m [Message]
+    predicts :: (MonadIO m, MonadThrow m, MsgList msg) => Lens' s a -> msg -> StateT s m [Message]
 
     -- | Add Messages for current and only model
-    addMsgs :: Monad m => [Message] -> StateT a m ()
+    addMsgs :: (Monad m, MsgList msg) => msg -> StateT a m ()
     addMsgs = addMsgsTo id
 
     -- | Add Messages for specific model
-    addMsgsTo :: Monad m => Lens' s a -> [Message] -> StateT s m ()
+    addMsgsTo :: (Monad m, MsgList msg) => Lens' s a -> msg -> StateT s m ()
