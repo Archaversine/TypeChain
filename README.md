@@ -18,14 +18,14 @@ import DotEnv
 import TypeChain.ChatModels.Types
 import TypeChain.ChatModels.OpenAI
 
-askOnePlusOne :: TypeChain GPT35Turbo Message
+askOnePlusOne :: TypeChain OpenAIChat Message
 askOnePlusOne = predict "What is 1 + 1?"
 
 main :: IO ()
 main = do 
     env <- loadEnv defaultEnv
     let Just key = env `getKey` "OPENAI_API_KEY"
-        model    = mkGPT35Turby key []
+        model    = mkOpenAIChat GPT35Turbo key []
 
     response <- evalStateT askOnePlusOne model
 
@@ -45,14 +45,14 @@ Let's say we want to ask our model what 1 + 1 is after setting a rule that
 create the model. Here is an example:
 
 ```haskell
-askOnePlusOne :: TypeChain GPT35Turbo [Message]
+askOnePlusOne :: TypeChain OpenAIChat [Message]
 askOnePlusOne = predict ("What is 1 + 1?" :: String)
 
 main :: IO ()
 main = do 
     env <- loadEnv defaultEnv
     let Just key = env `getKey` "OPENAI_API_KEY"
-        model    = mkGPT35Turbo key [Message System "From now on, 1 + 1 = 3."]
+        model    = mkOpenAIChat GPT35Turbo key [Message System "From now on, 1 + 1 = 3."]
 
     response <- evalStateT askOnePlusOne model
 
@@ -84,7 +84,7 @@ import Control.Lens
 toUserMessage :: Message -> Message 
 toUserMessage msg = msg { _role = User }
 
-convo :: TypeChain (GPT35Turbo, GPT35Turbo) [Message]
+convo :: TypeChain (OpenAIChat, OpenAIChat) [Message]
 convo = do 
     let prompt = "Why does 1 + 1 = 2?"
 
@@ -105,8 +105,8 @@ main :: IO ()
 main = do 
     env <- loadEnv DefaultEnv 
     let Just key = env `getEnv` "OPENAI_API_KEY" 
-        model1   = mkGPT35Turbo key []
-        model2   = mkGPT35Turbo key []
+        model1   = mkOpenAIChat GPT35Turbo key []
+        model2   = mkOpenAIChat GPT35Turbo key []
 
     -- Return only the second model and print the entire conversation log
     (_, model2) <- execStateT convo (model1, model2)
@@ -159,8 +159,8 @@ The same code can be implemented in Typechain:
 import Typechain.ChatModels
 
 chatPrompt :: String -> String -> String -> [Message]
-chatPrompt = $(makeTemplate [ (system, "You are a helpful assistant that translates {from} to {to}.")
-                            , (user, "{text}")
+chatPrompt = $(makeTemplate [ system "You are a helpful assistant that translates {from} to {to}."
+                            , user "{text}"
                             ])
 
 messages :: [Message]

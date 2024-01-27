@@ -1,9 +1,10 @@
+{-# LANGUAGE DataKinds #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 
-module TypeChain.ChatModels.OpenAI (GPT35Turbo(..), mkGPT35Turbo) where
+module TypeChain.ChatModels.OpenAI (OpenAIChat(..), OpenAIChatModel(..), mkOpenAIChat) where
 
 import Control.Lens hiding ((.=))
 import Control.Monad.Catch
@@ -23,17 +24,39 @@ import Network.HTTP.Conduit
 
 import qualified Data.ByteString.Lazy as BS
 
-instance ToJSON GPT35Turbo where 
-    toJSON (GPT35Turbo k msgs temp) = object [ "model"       .= ("gpt-3.5-turbo" :: String)
-                                             , "temperature" .= temp
-                                             , "messages"    .= msgs
-                                             ]
+--instance ToJSON GPT35Turbo where 
+--    toJSON (GPT35Turbo k msgs temp) = object [ "model"       .= ("gpt-3.5-turbo" :: String)
+--                                             , "temperature" .= temp
+--                                             , "messages"    .= msgs
+--                                             ]
 
--- | A chat model that uses OpenAI's GPT-3.5-Turbo model
-data GPT35Turbo = GPT35Turbo { key         :: ApiKey 
+data OpenAIChatModel = GPT35Turbo | GPT4 | GPT4Turbo
+
+instance Show OpenAIChatModel where 
+    show GPT35Turbo = "gpt-3.5-turbo"
+    show GPT4       = "gpt-4"
+    show GPT4Turbo  = "gpt-4-turbo-preview"
+
+instance ToJSON OpenAIChatModel where 
+    toJSON = toJSON . show
+
+data OpenAIChat = OpenAIChat { chatModel   :: OpenAIChatModel
                              , messages    :: [Message]
                              , temperature :: Float
-                             }
+                             , apiKey      :: ApiKey
+                             } deriving Generic
+
+instance ToJSON OpenAIChat where 
+    toJSON (OpenAIChat m msgs t k) = object [ "model"       .= m
+                                            , "temperature" .= t
+                                            , "messages"    .= msgs
+                                            ]
+
+---- | A chat model that uses OpenAI's GPT-3.5-Turbo model
+--data GPT35Turbo = GPT35Turbo { key         :: ApiKey 
+--                             , messages    :: [Message]
+--                             , temperature :: Float
+--                             }
 
 -- | A list of responses from OpenAI's GPT-3.5-Turbo model
 data Choices = Choices { message       :: Message 
@@ -56,21 +79,21 @@ instance FromJSON OpenAIResponse where
         return $ OpenAIResponse model choices
 
 -- | Create a GPT35Turbo model with default values
-mkGPT35Turbo :: ApiKey -> [Message] -> GPT35Turbo
-mkGPT35Turbo k messages = GPT35Turbo k messages 0.9
+mkOpenAIChat :: OpenAIChatModel -> ApiKey -> [Message] -> OpenAIChat
+mkOpenAIChat model k messages = OpenAIChat model messages 0.7 k
 
-mkGPT35TurboHeaders :: ApiKey -> RequestHeaders
-mkGPT35TurboHeaders k = [("Content-Type", "application/json"), ("Authorization", "Bearer " <> k)]
+mkOpenAIChatHeaders :: ApiKey -> RequestHeaders
+mkOpenAIChatHeaders k = [("Content-Type", "application/json"), ("Authorization", "Bearer " <> k)]
 
-mkGPT35TurboRequest :: MonadThrow m => GPT35Turbo -> m Request
-mkGPT35TurboRequest gpt@(GPT35Turbo k msgs temp) = do 
+mkGPT35TurboRequest :: MonadThrow m => OpenAIChat -> m Request
+mkGPT35TurboRequest gpt = do 
     initReq <- parseRequest "https://api.openai.com/v1/chat/completions"
-    return $ initReq { requestHeaders = mkGPT35TurboHeaders k
+    return $ initReq { requestHeaders = mkOpenAIChatHeaders (apiKey gpt) 
                      , requestBody    = RequestBodyLBS (encode gpt)
                      , method         = "POST"
                      }
 
-instance ChatModel GPT35Turbo where 
+instance ChatModel OpenAIChat where 
     predicts model m = do 
         let msgs = toMsgList m
 
