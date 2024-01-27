@@ -25,7 +25,7 @@ main :: IO ()
 main = do 
     env <- loadEnv defaultEnv
     let Just key = env `getKey` "OPENAI_API_KEY"
-        model    = mkOpenAIChat GPT35Turbo key []
+        model    = initOpenAIChat { chatModel = GPT35Turbo, apiKey = key }
 
     response <- evalStateT askOnePlusOne model
 
@@ -52,7 +52,7 @@ main :: IO ()
 main = do 
     env <- loadEnv defaultEnv
     let Just key = env `getKey` "OPENAI_API_KEY"
-        model    = mkOpenAIChat GPT35Turbo key [Message System "From now on, 1 + 1 = 3."]
+        model    = initOpenAIChat { chatModel = GPT35Turbo, apiKey = key }
 
     response <- evalStateT askOnePlusOne model
 
@@ -105,8 +105,8 @@ main :: IO ()
 main = do 
     env <- loadEnv DefaultEnv 
     let Just key = env `getEnv` "OPENAI_API_KEY" 
-        model1   = mkOpenAIChat GPT35Turbo key []
-        model2   = mkOpenAIChat GPT35Turbo key []
+        model1   = initOpenAIChat { chatModel = GPT35Turbo, apiKey = key }
+        model2   = initOpenAIChat { chatModel = GPT35Turbo, apiKey = key }
 
     -- Return only the second model and print the entire conversation log
     (_, model2) <- execStateT convo (model1, model2)

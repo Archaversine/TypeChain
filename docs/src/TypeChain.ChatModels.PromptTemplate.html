@@ -10,7 +10,7 @@
 </span><span id="line-10"></span><span>
 </span><span id="line-11"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.Types.html"><span class="hs-identifier">TypeChain.ChatModels.Types</span></a></span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="TemplateToken"><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#TemplateToken"><span class="hs-identifier hs-var">TemplateToken</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="ConstString"><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#ConstString"><span class="hs-identifier hs-var">ConstString</span></a></span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Var"><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#Var"><span class="hs-identifier hs-var">Var</span></a></span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621679136078"><span id="local-6989586621679136084"><span class="annot"><span class="annottext">TemplateToken -&gt; TemplateToken -&gt; Bool
+</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="TemplateToken"><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#TemplateToken"><span class="hs-identifier hs-var">TemplateToken</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="ConstString"><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#ConstString"><span class="hs-identifier hs-var">ConstString</span></a></span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Var"><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#Var"><span class="hs-identifier hs-var">Var</span></a></span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621679136072"><span id="local-6989586621679136078"><span class="annot"><span class="annottext">TemplateToken -&gt; TemplateToken -&gt; Bool
 (TemplateToken -&gt; TemplateToken -&gt; Bool)
 -&gt; (TemplateToken -&gt; TemplateToken -&gt; Bool) -&gt; Eq TemplateToken
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -24,36 +24,36 @@ $c/= :: TemplateToken -&gt; TemplateToken -&gt; Bool
 </span><span id="line-16"></span><span>
 </span><span id="line-17"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#user"><span class="hs-identifier hs-type">user</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Q</span></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#PromptTemplate"><span class="hs-identifier hs-type">PromptTemplate</span></a></span><span>
 </span><span id="line-18"></span><span id="user"><span class="annot"><span class="annottext">user :: String -&gt; Q PromptTemplate
-</span><a href="TypeChain.ChatModels.PromptTemplate.html#user"><span class="hs-identifier hs-var hs-var">user</span></a></span></span><span> </span><span id="local-6989586621679136089"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136089"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Q Exp -&gt; Q PromptTemplate
+</span><a href="TypeChain.ChatModels.PromptTemplate.html#user"><span class="hs-identifier hs-var hs-var">user</span></a></span></span><span> </span><span id="local-6989586621679136083"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679136083"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Q Exp -&gt; Q PromptTemplate
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#toTemplate"><span class="hs-identifier hs-var">toTemplate</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136089"><span class="hs-identifier hs-var">xs</span></a></span><span> </span><span class="hs-special">[|</span><span> </span><span class="hs-identifier">UserMessage</span><span> </span><span class="hs-special">|]</span><span>
+</span><a href="#local-6989586621679136083"><span class="hs-identifier hs-var">xs</span></a></span><span> </span><span class="hs-special">[|</span><span> </span><span class="hs-identifier">UserMessage</span><span> </span><span class="hs-special">|]</span><span>
 </span><span id="line-19"></span><span>
 </span><span id="line-20"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#assistant"><span class="hs-identifier hs-type">assistant</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Q</span></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#PromptTemplate"><span class="hs-identifier hs-type">PromptTemplate</span></a></span><span>
 </span><span id="line-21"></span><span id="assistant"><span class="annot"><span class="annottext">assistant :: String -&gt; Q PromptTemplate
-</span><a href="TypeChain.ChatModels.PromptTemplate.html#assistant"><span class="hs-identifier hs-var hs-var">assistant</span></a></span></span><span> </span><span id="local-6989586621679136091"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136091"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Q Exp -&gt; Q PromptTemplate
+</span><a href="TypeChain.ChatModels.PromptTemplate.html#assistant"><span class="hs-identifier hs-var hs-var">assistant</span></a></span></span><span> </span><span id="local-6989586621679136085"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679136085"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Q Exp -&gt; Q PromptTemplate
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#toTemplate"><span class="hs-identifier hs-var">toTemplate</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136091"><span class="hs-identifier hs-var">xs</span></a></span><span> </span><span class="hs-special">[|</span><span> </span><span class="hs-identifier">AssistantMessage</span><span> </span><span class="hs-special">|]</span><span>
+</span><a href="#local-6989586621679136085"><span class="hs-identifier hs-var">xs</span></a></span><span> </span><span class="hs-special">[|</span><span> </span><span class="hs-identifier">AssistantMessage</span><span> </span><span class="hs-special">|]</span><span>
 </span><span id="line-22"></span><span>
 </span><span id="line-23"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#system"><span class="hs-identifier hs-type">system</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Q</span></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#PromptTemplate"><span class="hs-identifier hs-type">PromptTemplate</span></a></span><span>
 </span><span id="line-24"></span><span id="system"><span class="annot"><span class="annottext">system :: String -&gt; Q PromptTemplate
-</span><a href="TypeChain.ChatModels.PromptTemplate.html#system"><span class="hs-identifier hs-var hs-var">system</span></a></span></span><span> </span><span id="local-6989586621679136092"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136092"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Q Exp -&gt; Q PromptTemplate
+</span><a href="TypeChain.ChatModels.PromptTemplate.html#system"><span class="hs-identifier hs-var hs-var">system</span></a></span></span><span> </span><span id="local-6989586621679136086"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679136086"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Q Exp -&gt; Q PromptTemplate
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#toTemplate"><span class="hs-identifier hs-var">toTemplate</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136092"><span class="hs-identifier hs-var">xs</span></a></span><span> </span><span class="hs-special">[|</span><span> </span><span class="hs-identifier">SystemMessage</span><span> </span><span class="hs-special">|]</span><span>
+</span><a href="#local-6989586621679136086"><span class="hs-identifier hs-var">xs</span></a></span><span> </span><span class="hs-special">[|</span><span> </span><span class="hs-identifier">SystemMessage</span><span> </span><span class="hs-special">|]</span><span>
 </span><span id="line-25"></span><span>
 </span><span id="line-26"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#toTemplate"><span class="hs-identifier hs-type">toTemplate</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Q</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Exp</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Q</span></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#PromptTemplate"><span class="hs-identifier hs-type">PromptTemplate</span></a></span><span>
 </span><span id="line-27"></span><span id="toTemplate"><span class="annot"><span class="annottext">toTemplate :: String -&gt; Q Exp -&gt; Q PromptTemplate
-</span><a href="TypeChain.ChatModels.PromptTemplate.html#toTemplate"><span class="hs-identifier hs-var hs-var">toTemplate</span></a></span></span><span> </span><span id="local-6989586621679136093"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136093"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span id="local-6989586621679136094"><span class="annot"><span class="annottext">Q Exp
-</span><a href="#local-6989586621679136094"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span> </span><span>
-</span><span id="line-28"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679136095"><span class="annot"><span class="annottext">tokens :: [TemplateToken]
-</span><a href="#local-6989586621679136095"><span class="hs-identifier hs-var hs-var">tokens</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; [TemplateToken]
+</span><a href="TypeChain.ChatModels.PromptTemplate.html#toTemplate"><span class="hs-identifier hs-var hs-var">toTemplate</span></a></span></span><span> </span><span id="local-6989586621679136087"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679136087"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span id="local-6989586621679136088"><span class="annot"><span class="annottext">Q Exp
+</span><a href="#local-6989586621679136088"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span> </span><span>
+</span><span id="line-28"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679136089"><span class="annot"><span class="annottext">tokens :: [TemplateToken]
+</span><a href="#local-6989586621679136089"><span class="hs-identifier hs-var hs-var">tokens</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; [TemplateToken]
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#parseTemplateTokens"><span class="hs-identifier hs-var">parseTemplateTokens</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136093"><span class="hs-identifier hs-var">xs</span></a></span><span>
-</span><span id="line-29"></span><span>        </span><span id="local-6989586621679136099"><span class="annot"><span class="annottext">names :: [Name]
-</span><a href="#local-6989586621679136099"><span class="hs-identifier hs-var hs-var">names</span></a></span></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(String -&gt; Name) -&gt; [String] -&gt; [Name]
+</span><a href="#local-6989586621679136087"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><span id="line-29"></span><span>        </span><span id="local-6989586621679136093"><span class="annot"><span class="annottext">names :: [Name]
+</span><a href="#local-6989586621679136093"><span class="hs-identifier hs-var hs-var">names</span></a></span></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(String -&gt; Name) -&gt; [String] -&gt; [Name]
 forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Name
 </span><span class="hs-identifier hs-var">mkName</span></span><span> </span><span class="annot"><span class="annottext">([String] -&gt; [Name]) -&gt; [String] -&gt; [Name]
@@ -64,28 +64,28 @@ forall a. Eq a =&gt; [a] -&gt; [a]
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[TemplateToken] -&gt; [String]
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#getVarTokens"><span class="hs-identifier hs-var">getVarTokens</span></a></span><span> </span><span class="annot"><span class="annottext">[TemplateToken]
-</span><a href="#local-6989586621679136095"><span class="hs-identifier hs-var">tokens</span></a></span><span>
-</span><span id="line-30"></span><span>        </span><span id="local-6989586621679136106"><span class="annot"><span class="annottext">params :: [Q Pat]
-</span><a href="#local-6989586621679136106"><span class="hs-identifier hs-var hs-var">params</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Name -&gt; Q Pat) -&gt; [Name] -&gt; [Q Pat]
+</span><a href="#local-6989586621679136089"><span class="hs-identifier hs-var">tokens</span></a></span><span>
+</span><span id="line-30"></span><span>        </span><span id="local-6989586621679136100"><span class="annot"><span class="annottext">params :: [Q Pat]
+</span><a href="#local-6989586621679136100"><span class="hs-identifier hs-var hs-var">params</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Name -&gt; Q Pat) -&gt; [Name] -&gt; [Q Pat]
 forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="annot"><span class="annottext">Name -&gt; Q Pat
 forall (m :: * -&gt; *). Quote m =&gt; Name -&gt; m Pat
 </span><span class="hs-identifier hs-var">varP</span></span><span> </span><span class="annot"><span class="annottext">[Name]
-</span><a href="#local-6989586621679136099"><span class="hs-identifier hs-var">names</span></a></span><span>
-</span><span id="line-31"></span><span>        </span><span id="local-6989586621679136109"><span class="annot"><span class="annottext">func :: Q Exp
-</span><a href="#local-6989586621679136109"><span class="hs-identifier hs-var hs-var">func</span></a></span></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Q Pat] -&gt; Q Exp -&gt; Q Exp
+</span><a href="#local-6989586621679136093"><span class="hs-identifier hs-var">names</span></a></span><span>
+</span><span id="line-31"></span><span>        </span><span id="local-6989586621679136103"><span class="annot"><span class="annottext">func :: Q Exp
+</span><a href="#local-6989586621679136103"><span class="hs-identifier hs-var hs-var">func</span></a></span></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Q Pat] -&gt; Q Exp -&gt; Q Exp
 forall (m :: * -&gt; *). Quote m =&gt; [m Pat] -&gt; m Exp -&gt; m Exp
 </span><span class="hs-identifier hs-var">lamE</span></span><span> </span><span class="annot"><span class="annottext">[Q Pat]
-</span><a href="#local-6989586621679136106"><span class="hs-identifier hs-var">params</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Q Exp -&gt; Q Exp -&gt; Q Exp
+</span><a href="#local-6989586621679136100"><span class="hs-identifier hs-var">params</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Q Exp -&gt; Q Exp -&gt; Q Exp
 forall (m :: * -&gt; *). Quote m =&gt; m Exp -&gt; m Exp -&gt; m Exp
 </span><span class="hs-identifier hs-var">appE</span></span><span> </span><span class="annot"><span class="annottext">Q Exp
-</span><a href="#local-6989586621679136094"><span class="hs-identifier hs-var">f</span></a></span><span> </span><span class="annot"><span class="annottext">(Q Exp -&gt; Q Exp) -&gt; Q Exp -&gt; Q Exp
+</span><a href="#local-6989586621679136088"><span class="hs-identifier hs-var">f</span></a></span><span> </span><span class="annot"><span class="annottext">(Q Exp -&gt; Q Exp) -&gt; Q Exp -&gt; Q Exp
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[TemplateToken] -&gt; Q Exp
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#tokensToExpr"><span class="hs-identifier hs-var">tokensToExpr</span></a></span><span> </span><span class="annot"><span class="annottext">[TemplateToken]
-</span><a href="#local-6989586621679136095"><span class="hs-identifier hs-var">tokens</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-32"></span><span>        </span><span id="local-6989586621679136115"><span class="annot"><span class="annottext">expr :: Q Exp
-</span><a href="#local-6989586621679136115"><span class="hs-identifier hs-var hs-var">expr</span></a></span></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Q Exp -&gt; Q Exp -&gt; Q Exp) -&gt; Q Exp -&gt; [Q Exp] -&gt; Q Exp
+</span><a href="#local-6989586621679136089"><span class="hs-identifier hs-var">tokens</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-32"></span><span>        </span><span id="local-6989586621679136109"><span class="annot"><span class="annottext">expr :: Q Exp
+</span><a href="#local-6989586621679136109"><span class="hs-identifier hs-var hs-var">expr</span></a></span></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Q Exp -&gt; Q Exp -&gt; Q Exp) -&gt; Q Exp -&gt; [Q Exp] -&gt; Q Exp
 forall b a. (b -&gt; a -&gt; b) -&gt; b -&gt; [a] -&gt; b
 forall (t :: * -&gt; *) b a.
 Foldable t =&gt;
@@ -93,27 +93,27 @@ Foldable t =&gt;
 </span><span class="hs-identifier hs-var">foldl</span></span><span> </span><span class="annot"><span class="annottext">Q Exp -&gt; Q Exp -&gt; Q Exp
 forall (m :: * -&gt; *). Quote m =&gt; m Exp -&gt; m Exp -&gt; m Exp
 </span><span class="hs-identifier hs-var">appE</span></span><span> </span><span class="annot"><span class="annottext">Q Exp
-</span><a href="#local-6989586621679136109"><span class="hs-identifier hs-var">func</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(Name -&gt; Q Exp) -&gt; [Name] -&gt; [Q Exp]
+</span><a href="#local-6989586621679136103"><span class="hs-identifier hs-var">func</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(Name -&gt; Q Exp) -&gt; [Name] -&gt; [Q Exp]
 forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="annot"><span class="annottext">Name -&gt; Q Exp
 forall (m :: * -&gt; *). Quote m =&gt; Name -&gt; m Exp
 </span><span class="hs-identifier hs-var">varE</span></span><span> </span><span class="annot"><span class="annottext">[Name]
-</span><a href="#local-6989586621679136099"><span class="hs-identifier hs-var">names</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679136093"><span class="hs-identifier hs-var">names</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-33"></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><span class="annottext">PromptTemplate -&gt; Q PromptTemplate
 forall a. a -&gt; Q a
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Q Exp
-</span><a href="#local-6989586621679136115"><span class="hs-identifier hs-var">expr</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">[Name]
-</span><a href="#local-6989586621679136099"><span class="hs-identifier hs-var">names</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679136109"><span class="hs-identifier hs-var">expr</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">[Name]
+</span><a href="#local-6989586621679136093"><span class="hs-identifier hs-var">names</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-35"></span><span>
 </span><span id="line-36"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#makeTemplate"><span class="hs-identifier hs-type">makeTemplate</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Q</span></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#PromptTemplate"><span class="hs-identifier hs-type">PromptTemplate</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Q</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Exp</span></span><span>
 </span><span id="line-37"></span><span id="makeTemplate"><span class="annot"><span class="annottext">makeTemplate :: [Q PromptTemplate] -&gt; Q Exp
-</span><a href="TypeChain.ChatModels.PromptTemplate.html#makeTemplate"><span class="hs-identifier hs-var hs-var">makeTemplate</span></a></span></span><span> </span><span id="local-6989586621679136117"><span class="annot"><span class="annottext">[Q PromptTemplate]
-</span><a href="#local-6989586621679136117"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span> </span><span>
-</span><span id="line-38"></span><span>    </span><span class="hs-special">(</span><span id="local-6989586621679136118"><span class="annot"><span class="annottext">[Q Exp]
-</span><a href="#local-6989586621679136118"><span class="hs-identifier hs-var">exps</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679136119"><span class="annot"><span class="annottext">[[Name]]
-</span><a href="#local-6989586621679136119"><span class="hs-identifier hs-var">ps</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[PromptTemplate] -&gt; ([Q Exp], [[Name]])
+</span><a href="TypeChain.ChatModels.PromptTemplate.html#makeTemplate"><span class="hs-identifier hs-var hs-var">makeTemplate</span></a></span></span><span> </span><span id="local-6989586621679136111"><span class="annot"><span class="annottext">[Q PromptTemplate]
+</span><a href="#local-6989586621679136111"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span> </span><span>
+</span><span id="line-38"></span><span>    </span><span class="hs-special">(</span><span id="local-6989586621679136112"><span class="annot"><span class="annottext">[Q Exp]
+</span><a href="#local-6989586621679136112"><span class="hs-identifier hs-var">exps</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679136113"><span class="annot"><span class="annottext">[[Name]]
+</span><a href="#local-6989586621679136113"><span class="hs-identifier hs-var">ps</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[PromptTemplate] -&gt; ([Q Exp], [[Name]])
 forall a b. [(a, b)] -&gt; ([a], [b])
 </span><span class="hs-identifier hs-var">unzip</span></span><span> </span><span class="annot"><span class="annottext">([PromptTemplate] -&gt; ([Q Exp], [[Name]]))
 -&gt; Q [PromptTemplate] -&gt; Q ([Q Exp], [[Name]])
@@ -124,16 +124,16 @@ forall (t :: * -&gt; *) (m :: * -&gt; *) a.
 t (m a) -&gt; m (t a)
 forall (m :: * -&gt; *) a. Monad m =&gt; [m a] -&gt; m [a]
 </span><span class="hs-identifier hs-var">sequence</span></span><span> </span><span class="annot"><span class="annottext">[Q PromptTemplate]
-</span><a href="#local-6989586621679136117"><span class="hs-identifier hs-var">xs</span></a></span><span>
-</span><span id="line-39"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679136126"><span class="annot"><span class="annottext">params :: [Name]
-</span><a href="#local-6989586621679136126"><span class="hs-identifier hs-var hs-var">params</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Name] -&gt; [Name]
+</span><a href="#local-6989586621679136111"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><span id="line-39"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679136120"><span class="annot"><span class="annottext">params :: [Name]
+</span><a href="#local-6989586621679136120"><span class="hs-identifier hs-var hs-var">params</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Name] -&gt; [Name]
 forall a. Eq a =&gt; [a] -&gt; [a]
 </span><span class="hs-identifier hs-var">nub</span></span><span> </span><span class="annot"><span class="annottext">([Name] -&gt; [Name]) -&gt; [Name] -&gt; [Name]
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[[Name]] -&gt; [Name]
 forall (t :: * -&gt; *) a. Foldable t =&gt; t [a] -&gt; [a]
 </span><span class="hs-identifier hs-var">concat</span></span><span> </span><span class="annot"><span class="annottext">[[Name]]
-</span><a href="#local-6989586621679136119"><span class="hs-identifier hs-var">ps</span></a></span><span>
+</span><a href="#local-6989586621679136113"><span class="hs-identifier hs-var">ps</span></a></span><span>
 </span><span id="line-40"></span><span>    </span><span>
 </span><span id="line-41"></span><span>    </span><span class="annot"><span class="annottext">[Q Pat] -&gt; Q Exp -&gt; Q Exp
 forall (m :: * -&gt; *). Quote m =&gt; [m Pat] -&gt; m Exp -&gt; m Exp
@@ -142,94 +142,94 @@ forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="annot"><span class="annottext">Name -&gt; Q Pat
 forall (m :: * -&gt; *). Quote m =&gt; Name -&gt; m Pat
 </span><span class="hs-identifier hs-var">varP</span></span><span> </span><span class="annot"><span class="annottext">[Name]
-</span><a href="#local-6989586621679136126"><span class="hs-identifier hs-var">params</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(Q Exp -&gt; Q Exp) -&gt; Q Exp -&gt; Q Exp
+</span><a href="#local-6989586621679136120"><span class="hs-identifier hs-var">params</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(Q Exp -&gt; Q Exp) -&gt; Q Exp -&gt; Q Exp
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[Q Exp] -&gt; Q Exp
 forall (m :: * -&gt; *). Quote m =&gt; [m Exp] -&gt; m Exp
 </span><span class="hs-identifier hs-var">listE</span></span><span> </span><span class="annot"><span class="annottext">[Q Exp]
-</span><a href="#local-6989586621679136118"><span class="hs-identifier hs-var">exps</span></a></span><span>
+</span><a href="#local-6989586621679136112"><span class="hs-identifier hs-var">exps</span></a></span><span>
 </span><span id="line-42"></span><span>
 </span><span id="line-43"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#parseTemplateTokens"><span class="hs-identifier hs-type">parseTemplateTokens</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#TemplateToken"><span class="hs-identifier hs-type">TemplateToken</span></a></span><span class="hs-special">]</span><span>
 </span><span id="line-44"></span><span id="parseTemplateTokens"><span class="annot"><span class="annottext">parseTemplateTokens :: String -&gt; [TemplateToken]
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#parseTemplateTokens"><span class="hs-identifier hs-var hs-var">parseTemplateTokens</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span>
 </span><span id="line-45"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#parseTemplateTokens"><span class="hs-identifier hs-var">parseTemplateTokens</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Char
-</span><span class="hs-char">'{'</span></span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span id="local-6989586621679136128"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136128"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; TemplateToken
+</span><span class="hs-char">'{'</span></span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span id="local-6989586621679136122"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679136122"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; TemplateToken
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#Var"><span class="hs-identifier hs-var">Var</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136129"><span class="hs-identifier hs-var">first</span></a></span><span> </span><span class="annot"><span class="annottext">TemplateToken -&gt; [TemplateToken] -&gt; [TemplateToken]
+</span><a href="#local-6989586621679136123"><span class="hs-identifier hs-var">first</span></a></span><span> </span><span class="annot"><span class="annottext">TemplateToken -&gt; [TemplateToken] -&gt; [TemplateToken]
 forall a. a -&gt; [a] -&gt; [a]
 </span><span class="hs-glyph hs-var">:</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [TemplateToken]
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#parseTemplateTokens"><span class="hs-identifier hs-var">parseTemplateTokens</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136130"><span class="hs-identifier hs-var">rest</span></a></span><span>
-</span><span id="line-46"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679136129"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136129"><span class="hs-identifier hs-var">first</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; String
+</span><a href="#local-6989586621679136124"><span class="hs-identifier hs-var">rest</span></a></span><span>
+</span><span id="line-46"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679136123"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679136123"><span class="hs-identifier hs-var">first</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; String
 forall a. HasCallStack =&gt; [a] -&gt; [a]
-</span><span class="hs-identifier hs-var">tail</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span id="local-6989586621679136130"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136130"><span class="hs-identifier hs-var">rest</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Char -&gt; Bool) -&gt; String -&gt; (String, String)
+</span><span class="hs-identifier hs-var">tail</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span id="local-6989586621679136124"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679136124"><span class="hs-identifier hs-var">rest</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Char -&gt; Bool) -&gt; String -&gt; (String, String)
 forall a. (a -&gt; Bool) -&gt; [a] -&gt; ([a], [a])
 </span><span class="hs-identifier hs-var">break</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Char -&gt; Char -&gt; Bool
 forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">Char
 </span><span class="hs-char">'}'</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136128"><span class="hs-identifier hs-var">xs</span></a></span><span>
-</span><span id="line-47"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#parseTemplateTokens"><span class="hs-identifier hs-var">parseTemplateTokens</span></a></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679136136"><span class="annot"><span class="annottext">Char
-</span><a href="#local-6989586621679136136"><span class="hs-identifier hs-var">x</span></a></span></span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span id="local-6989586621679136137"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136137"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; TemplateToken
+</span><a href="#local-6989586621679136122"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><span id="line-47"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#parseTemplateTokens"><span class="hs-identifier hs-var">parseTemplateTokens</span></a></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679136130"><span class="annot"><span class="annottext">Char
+</span><a href="#local-6989586621679136130"><span class="hs-identifier hs-var">x</span></a></span></span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span id="local-6989586621679136131"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679136131"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; TemplateToken
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#ConstString"><span class="hs-identifier hs-var">ConstString</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Char
-</span><a href="#local-6989586621679136136"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Char -&gt; String -&gt; String
+</span><a href="#local-6989586621679136130"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Char -&gt; String -&gt; String
 forall a. a -&gt; [a] -&gt; [a]
 </span><span class="hs-glyph hs-var">:</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136138"><span class="hs-identifier hs-var">first</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">TemplateToken -&gt; [TemplateToken] -&gt; [TemplateToken]
+</span><a href="#local-6989586621679136132"><span class="hs-identifier hs-var">first</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">TemplateToken -&gt; [TemplateToken] -&gt; [TemplateToken]
 forall a. a -&gt; [a] -&gt; [a]
 </span><span class="hs-glyph hs-var">:</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [TemplateToken]
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#parseTemplateTokens"><span class="hs-identifier hs-var">parseTemplateTokens</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136139"><span class="hs-identifier hs-var">rest</span></a></span><span>
-</span><span id="line-48"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679136138"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136138"><span class="hs-identifier hs-var">first</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679136139"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136139"><span class="hs-identifier hs-var">rest</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Char -&gt; Bool) -&gt; String -&gt; (String, String)
+</span><a href="#local-6989586621679136133"><span class="hs-identifier hs-var">rest</span></a></span><span>
+</span><span id="line-48"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679136132"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679136132"><span class="hs-identifier hs-var">first</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679136133"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679136133"><span class="hs-identifier hs-var">rest</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Char -&gt; Bool) -&gt; String -&gt; (String, String)
 forall a. (a -&gt; Bool) -&gt; [a] -&gt; ([a], [a])
 </span><span class="hs-identifier hs-var">break</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Char -&gt; Char -&gt; Bool
 forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">Char
 </span><span class="hs-char">'{'</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136137"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><a href="#local-6989586621679136131"><span class="hs-identifier hs-var">xs</span></a></span><span>
 </span><span id="line-49"></span><span>
 </span><span id="line-50"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#getVarTokens"><span class="hs-identifier hs-type">getVarTokens</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#TemplateToken"><span class="hs-identifier hs-type">TemplateToken</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span>
 </span><span id="line-51"></span><span id="getVarTokens"><span class="annot"><span class="annottext">getVarTokens :: [TemplateToken] -&gt; [String]
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#getVarTokens"><span class="hs-identifier hs-var hs-var">getVarTokens</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span>
-</span><span id="line-52"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#getVarTokens"><span class="hs-identifier hs-var">getVarTokens</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#Var"><span class="hs-identifier hs-type">Var</span></a></span><span> </span><span id="local-6989586621679136141"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136141"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span> </span><span id="local-6989586621679136142"><span class="annot"><span class="annottext">[TemplateToken]
-</span><a href="#local-6989586621679136142"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136141"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; [String]
+</span><span id="line-52"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#getVarTokens"><span class="hs-identifier hs-var">getVarTokens</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#Var"><span class="hs-identifier hs-type">Var</span></a></span><span> </span><span id="local-6989586621679136135"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679136135"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span> </span><span id="local-6989586621679136136"><span class="annot"><span class="annottext">[TemplateToken]
+</span><a href="#local-6989586621679136136"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679136135"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; [String]
 forall a. a -&gt; [a] -&gt; [a]
 </span><span class="hs-glyph hs-var">:</span></span><span> </span><span class="annot"><span class="annottext">[TemplateToken] -&gt; [String]
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#getVarTokens"><span class="hs-identifier hs-var">getVarTokens</span></a></span><span> </span><span class="annot"><span class="annottext">[TemplateToken]
-</span><a href="#local-6989586621679136142"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><a href="#local-6989586621679136136"><span class="hs-identifier hs-var">xs</span></a></span><span>
 </span><span id="line-53"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#getVarTokens"><span class="hs-identifier hs-var">getVarTokens</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">TemplateToken
-</span><span class="hs-identifier">_</span></span><span>     </span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span> </span><span id="local-6989586621679136143"><span class="annot"><span class="annottext">[TemplateToken]
-</span><a href="#local-6989586621679136143"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[TemplateToken] -&gt; [String]
+</span><span class="hs-identifier">_</span></span><span>     </span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span> </span><span id="local-6989586621679136137"><span class="annot"><span class="annottext">[TemplateToken]
+</span><a href="#local-6989586621679136137"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[TemplateToken] -&gt; [String]
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#getVarTokens"><span class="hs-identifier hs-var">getVarTokens</span></a></span><span> </span><span class="annot"><span class="annottext">[TemplateToken]
-</span><a href="#local-6989586621679136143"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><a href="#local-6989586621679136137"><span class="hs-identifier hs-var">xs</span></a></span><span>
 </span><span id="line-54"></span><span>
 </span><span id="line-55"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#tokensToExpr"><span class="hs-identifier hs-type">tokensToExpr</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#TemplateToken"><span class="hs-identifier hs-type">TemplateToken</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Q</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Exp</span></span><span>
 </span><span id="line-56"></span><span id="tokensToExpr"><span class="annot"><span class="annottext">tokensToExpr :: [TemplateToken] -&gt; Q Exp
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#tokensToExpr"><span class="hs-identifier hs-var hs-var">tokensToExpr</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[|</span><span> </span><span class="hs-string">&quot;&quot;</span><span> </span><span class="hs-special">|]</span><span>
-</span><span id="line-57"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#tokensToExpr"><span class="hs-identifier hs-var">tokensToExpr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#ConstString"><span class="hs-identifier hs-type">ConstString</span></a></span><span> </span><span id="local-6989586621679136144"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136144"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span> </span><span id="local-6989586621679136145"><span class="annot"><span class="annottext">[TemplateToken]
-</span><a href="#local-6989586621679136145"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[|</span><span> </span><span class="hs-identifier">x</span><span> </span><span class="hs-operator">++</span><span> </span><span class="hs-special">$</span><span class="hs-special">(</span><span class="annot"><span class="annottext">[TemplateToken] -&gt; Q Exp
+</span><span id="line-57"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#tokensToExpr"><span class="hs-identifier hs-var">tokensToExpr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#ConstString"><span class="hs-identifier hs-type">ConstString</span></a></span><span> </span><span id="local-6989586621679136138"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679136138"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span> </span><span id="local-6989586621679136139"><span class="annot"><span class="annottext">[TemplateToken]
+</span><a href="#local-6989586621679136139"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[|</span><span> </span><span class="hs-identifier">x</span><span> </span><span class="hs-operator">++</span><span> </span><span class="hs-special">$</span><span class="hs-special">(</span><span class="annot"><span class="annottext">[TemplateToken] -&gt; Q Exp
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#tokensToExpr"><span class="hs-identifier hs-var">tokensToExpr</span></a></span><span> </span><span class="annot"><span class="annottext">[TemplateToken]
-</span><a href="#local-6989586621679136145"><span class="hs-identifier hs-var">xs</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">|]</span><span>
-</span><span id="line-58"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#tokensToExpr"><span class="hs-identifier hs-var">tokensToExpr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#Var"><span class="hs-identifier hs-type">Var</span></a></span><span> </span><span id="local-6989586621679136146"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136146"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span> </span><span id="local-6989586621679136147"><span class="annot"><span class="annottext">[TemplateToken]
-</span><a href="#local-6989586621679136147"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Q Exp -&gt; Q Exp -&gt; Q Exp
+</span><a href="#local-6989586621679136139"><span class="hs-identifier hs-var">xs</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">|]</span><span>
+</span><span id="line-58"></span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#tokensToExpr"><span class="hs-identifier hs-var">tokensToExpr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="TypeChain.ChatModels.PromptTemplate.html#Var"><span class="hs-identifier hs-type">Var</span></a></span><span> </span><span id="local-6989586621679136140"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679136140"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span> </span><span id="local-6989586621679136141"><span class="annot"><span class="annottext">[TemplateToken]
+</span><a href="#local-6989586621679136141"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Q Exp -&gt; Q Exp -&gt; Q Exp
 forall (m :: * -&gt; *). Quote m =&gt; m Exp -&gt; m Exp -&gt; m Exp
 </span><span class="hs-identifier hs-var">appE</span></span><span> </span><span class="hs-special">[|</span><span> </span><span class="hs-special">(</span><span class="hs-operator">++</span><span class="hs-special">)</span><span> </span><span class="hs-special">|]</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Name -&gt; Q Exp
 forall (m :: * -&gt; *). Quote m =&gt; Name -&gt; m Exp
 </span><span class="hs-identifier hs-var">varE</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; Name
 </span><span class="hs-identifier hs-var">mkName</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679136146"><span class="hs-identifier hs-var">x</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Q Exp -&gt; Q Exp -&gt; Q Exp
+</span><a href="#local-6989586621679136140"><span class="hs-identifier hs-var">x</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Q Exp -&gt; Q Exp -&gt; Q Exp
 forall (m :: * -&gt; *). Quote m =&gt; m Exp -&gt; m Exp -&gt; m Exp
 </span><span class="hs-operator hs-var">`appE`</span></span><span> </span><span class="annot"><span class="annottext">[TemplateToken] -&gt; Q Exp
 </span><a href="TypeChain.ChatModels.PromptTemplate.html#tokensToExpr"><span class="hs-identifier hs-var">tokensToExpr</span></a></span><span> </span><span class="annot"><span class="annottext">[TemplateToken]
-</span><a href="#local-6989586621679136147"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><a href="#local-6989586621679136141"><span class="hs-identifier hs-var">xs</span></a></span><span>
 </span><span id="line-59"></span></pre></body></html>

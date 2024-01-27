@@ -4,7 +4,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 
-module TypeChain.ChatModels.OpenAI (OpenAIChat(..), OpenAIChatModel(..), mkOpenAIChat) where
+module TypeChain.ChatModels.OpenAI (OpenAIChat(..), OpenAIChatModel(..), initOpenAIChat) where
 
 import Control.Lens hiding ((.=))
 import Control.Monad.Catch
@@ -67,11 +67,18 @@ instance FromJSON OpenAIResponse where
         choices <- o .: "choices"
         return $ OpenAIResponse model choices
 
--- | Create an OpenAI chat model with default values
+-- | Create an OpenAI chat model with default values 
 --
--- Memorization is enabled by default.
-mkOpenAIChat :: OpenAIChatModel -> ApiKey -> [Message] -> OpenAIChat
-mkOpenAIChat model k messages = OpenAIChat model (Just messages) 0.7 k
+-- Model: GPT-3.5-Turbo
+-- Memorization: Enabled 
+-- Temperature: 0.7 
+-- ApiKey: <empty value>
+initOpenAIChat :: OpenAIChat
+initOpenAIChat = OpenAIChat { chatModel   = GPT35Turbo 
+                            , messages    = Just []
+                            , temperature = 0.7
+                            , apiKey      = "MISSING-API-KEY"
+                            }
 
 mkOpenAIChatHeaders :: ApiKey -> RequestHeaders
 mkOpenAIChatHeaders k = [("Content-Type", "application/json"), ("Authorization", "Bearer " <> k)]

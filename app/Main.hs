@@ -26,7 +26,7 @@ main :: IO ()
 main = do 
     env <- loadEnv DefaultEnv 
     let Just key = env `getEnv` "OPENAI_API_KEY" 
-        model   = mkOpenAIChat GPT35Turbo key []
+        model    = initOpenAIChat { chatModel = GPT35Turbo, apiKey = key }
 
     response <- evalStateT (convo "colors") model
     mapM_ putStrLn response
