@@ -12,59 +12,60 @@
 </span><span id="line-12"></span><span>
 </span><span id="line-13"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span>
 </span><span id="line-14"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.ByteString.Lazy</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">ByteString</span></span><span class="hs-special">)</span><span>
-</span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">GHC.Generics</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">Generic</span></span><span class="hs-special">)</span><span>
-</span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.Types.html"><span class="hs-identifier">TypeChain.ChatModels.Types</span></a></span><span>
-</span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Network.HTTP.Simple</span></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Network.HTTP.Conduit</span></span><span>
-</span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.ByteString.Lazy</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">BS</span></span><span>
-</span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679130577"><span id="local-6989586621679130581"><span id="local-6989586621679130584"><span id="local-6989586621679130587"><span class="annot"><span class="hs-identifier hs-type">ToJSON</span></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-type">GPT35Turbo</span></a></span></span></span></span></span><span> </span><span class="hs-keyword">where</span><span> </span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679130609"><span class="annot"><span class="annottext">toJSON :: GPT35Turbo -&gt; Value
-</span><a href="#local-6989586621679130609"><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-type">GPT35Turbo</span></a></span><span> </span><span id="local-6989586621679130612"><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679130612"><span class="hs-identifier hs-var">k</span></a></span></span><span> </span><span id="local-6989586621679130613"><span class="annot"><span class="annottext">[Message]
-</span><a href="#local-6989586621679130613"><span class="hs-identifier hs-var">msgs</span></a></span></span><span> </span><span id="local-6989586621679130614"><span class="annot"><span class="annottext">Float
-</span><a href="#local-6989586621679130614"><span class="hs-identifier hs-var">temp</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-15"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.Functor</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-operator">($&gt;)</span></span><span class="hs-special">)</span><span>
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">GHC.Generics</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">Generic</span></span><span class="hs-special">)</span><span>
+</span><span id="line-18"></span><span>
+</span><span id="line-19"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.Types.html"><span class="hs-identifier">TypeChain.ChatModels.Types</span></a></span><span>
+</span><span id="line-20"></span><span>
+</span><span id="line-21"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Network.HTTP.Simple</span></span><span>
+</span><span id="line-22"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Network.HTTP.Conduit</span></span><span>
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.ByteString.Lazy</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">BS</span></span><span>
+</span><span id="line-25"></span><span>
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679134615"><span id="local-6989586621679134619"><span id="local-6989586621679134622"><span id="local-6989586621679134625"><span class="annot"><span class="hs-identifier hs-type">ToJSON</span></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-type">GPT35Turbo</span></a></span></span></span></span></span><span> </span><span class="hs-keyword">where</span><span> </span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679134647"><span class="annot"><span class="annottext">toJSON :: GPT35Turbo -&gt; Value
+</span><a href="#local-6989586621679134647"><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-type">GPT35Turbo</span></a></span><span> </span><span id="local-6989586621679134650"><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679134650"><span class="hs-identifier hs-var">k</span></a></span></span><span> </span><span id="local-6989586621679134651"><span class="annot"><span class="annottext">[Message]
+</span><a href="#local-6989586621679134651"><span class="hs-identifier hs-var">msgs</span></a></span></span><span> </span><span id="local-6989586621679134652"><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679134652"><span class="hs-identifier hs-var">temp</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Key
 </span><span class="hs-string">&quot;model&quot;</span></span><span>       </span><span class="annot"><span class="annottext">Key -&gt; String -&gt; Pair
 forall v. ToJSON v =&gt; Key -&gt; v -&gt; Pair
 forall e kv v. (KeyValue e kv, ToJSON v) =&gt; Key -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">.=</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;gpt-3.5-turbo&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span>
-</span><span id="line-27"></span><span>                                             </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Key
+</span><span id="line-28"></span><span>                                             </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Key
 </span><span class="hs-string">&quot;temperature&quot;</span></span><span> </span><span class="annot"><span class="annottext">Key -&gt; Float -&gt; Pair
 forall v. ToJSON v =&gt; Key -&gt; v -&gt; Pair
 forall e kv v. (KeyValue e kv, ToJSON v) =&gt; Key -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">.=</span></span><span> </span><span class="annot"><span class="annottext">Float
-</span><a href="#local-6989586621679130614"><span class="hs-identifier hs-var">temp</span></a></span><span>
-</span><span id="line-28"></span><span>                                             </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Key
+</span><a href="#local-6989586621679134652"><span class="hs-identifier hs-var">temp</span></a></span><span>
+</span><span id="line-29"></span><span>                                             </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Key
 </span><span class="hs-string">&quot;messages&quot;</span></span><span>    </span><span class="annot"><span class="annottext">Key -&gt; [Message] -&gt; Pair
 forall v. ToJSON v =&gt; Key -&gt; v -&gt; Pair
 forall e kv v. (KeyValue e kv, ToJSON v) =&gt; Key -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">.=</span></span><span> </span><span class="annot"><span class="annottext">[Message]
-</span><a href="#local-6989586621679130613"><span class="hs-identifier hs-var">msgs</span></a></span><span>
-</span><span id="line-29"></span><span>                                             </span><span class="hs-special">]</span><span>
-</span><span id="line-30"></span><span>
-</span><span id="line-31"></span><span class="annot"><span class="hs-comment">-- | A chat model that uses OpenAI's GPT-3.5-Turbo model</span></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">data</span><span> </span><span id="GPT35Turbo"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-var">GPT35Turbo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="GPT35Turbo"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-var">GPT35Turbo</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="key"><span class="annot"><span class="annottext">GPT35Turbo -&gt; ByteString
+</span><a href="#local-6989586621679134651"><span class="hs-identifier hs-var">msgs</span></a></span><span>
+</span><span id="line-30"></span><span>                                             </span><span class="hs-special">]</span><span>
+</span><span id="line-31"></span><span>
+</span><span id="line-32"></span><span class="annot"><span class="hs-comment">-- | A chat model that uses OpenAI's GPT-3.5-Turbo model</span></span><span>
+</span><span id="line-33"></span><span class="hs-keyword">data</span><span> </span><span id="GPT35Turbo"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-var">GPT35Turbo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="GPT35Turbo"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-var">GPT35Turbo</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="key"><span class="annot"><span class="annottext">GPT35Turbo -&gt; ByteString
 </span><a href="TypeChain.ChatModels.OpenAI.html#key"><span class="hs-identifier hs-var hs-var">key</span></a></span></span><span>         </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.Types.html#ApiKey"><span class="hs-identifier hs-type">ApiKey</span></a></span><span> </span><span>
-</span><span id="line-33"></span><span>                             </span><span class="hs-special">,</span><span> </span><span id="messages"><span class="annot"><span class="annottext">GPT35Turbo -&gt; [Message]
+</span><span id="line-34"></span><span>                             </span><span class="hs-special">,</span><span> </span><span id="messages"><span class="annot"><span class="annottext">GPT35Turbo -&gt; [Message]
 </span><a href="TypeChain.ChatModels.OpenAI.html#messages"><span class="hs-identifier hs-var hs-var">messages</span></a></span></span><span>    </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TypeChain.ChatModels.Types.html#Message"><span class="hs-identifier hs-type">Message</span></a></span><span class="hs-special">]</span><span>
-</span><span id="line-34"></span><span>                             </span><span class="hs-special">,</span><span> </span><span id="temperature"><span class="annot"><span class="annottext">GPT35Turbo -&gt; Float
+</span><span id="line-35"></span><span>                             </span><span class="hs-special">,</span><span> </span><span id="temperature"><span class="annot"><span class="annottext">GPT35Turbo -&gt; Float
 </span><a href="TypeChain.ChatModels.OpenAI.html#temperature"><span class="hs-identifier hs-var hs-var">temperature</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span>
-</span><span id="line-35"></span><span>                             </span><span class="hs-special">}</span><span>
-</span><span id="line-36"></span><span>
-</span><span id="line-37"></span><span class="annot"><span class="hs-comment">-- | A list of responses from OpenAI's GPT-3.5-Turbo model</span></span><span>
-</span><span id="line-38"></span><span class="hs-keyword">data</span><span> </span><span id="Choices"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#Choices"><span class="hs-identifier hs-var">Choices</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Choices"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#Choices"><span class="hs-identifier hs-var">Choices</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="message"><span class="annot"><span class="annottext">Choices -&gt; Message
+</span><span id="line-36"></span><span>                             </span><span class="hs-special">}</span><span>
+</span><span id="line-37"></span><span>
+</span><span id="line-38"></span><span class="annot"><span class="hs-comment">-- | A list of responses from OpenAI's GPT-3.5-Turbo model</span></span><span>
+</span><span id="line-39"></span><span class="hs-keyword">data</span><span> </span><span id="Choices"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#Choices"><span class="hs-identifier hs-var">Choices</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Choices"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#Choices"><span class="hs-identifier hs-var">Choices</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="message"><span class="annot"><span class="annottext">Choices -&gt; Message
 </span><a href="TypeChain.ChatModels.OpenAI.html#message"><span class="hs-identifier hs-var hs-var">message</span></a></span></span><span>       </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.Types.html#Message"><span class="hs-identifier hs-type">Message</span></a></span><span> </span><span>
-</span><span id="line-39"></span><span>                       </span><span class="hs-special">,</span><span> </span><span id="finish_reason"><span class="annot"><span class="annottext">Choices -&gt; String
+</span><span id="line-40"></span><span>                       </span><span class="hs-special">,</span><span> </span><span id="finish_reason"><span class="annot"><span class="annottext">Choices -&gt; String
 </span><a href="TypeChain.ChatModels.OpenAI.html#finish_reason"><span class="hs-identifier hs-var hs-var">finish_reason</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span>
-</span><span id="line-40"></span><span>                       </span><span class="hs-special">,</span><span> </span><span id="index"><span class="annot"><span class="annottext">Choices -&gt; Int
+</span><span id="line-41"></span><span>                       </span><span class="hs-special">,</span><span> </span><span id="index"><span class="annot"><span class="annottext">Choices -&gt; Int
 </span><a href="TypeChain.ChatModels.OpenAI.html#index"><span class="hs-identifier hs-var hs-var">index</span></a></span></span><span>         </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
-</span><span id="line-41"></span><span>                       </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621679130626"><span id="local-6989586621679130628"><span class="annot"><span class="annottext">(forall x. Choices -&gt; Rep Choices x)
+</span><span id="line-42"></span><span>                       </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621679134664"><span id="local-6989586621679134666"><span class="annot"><span class="annottext">(forall x. Choices -&gt; Rep Choices x)
 -&gt; (forall x. Rep Choices x -&gt; Choices) -&gt; Generic Choices
 forall x. Rep Choices x -&gt; Choices
 forall x. Choices -&gt; Rep Choices x
@@ -75,15 +76,15 @@ from :: forall x. Choices -&gt; Rep Choices x
 $cto :: forall x. Rep Choices x -&gt; Choices
 to :: forall x. Rep Choices x -&gt; Choices
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Generic</span></span></span></span><span>
-</span><span id="line-42"></span><span>
-</span><span id="line-43"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679130632"><span id="local-6989586621679130639"><span id="local-6989586621679130642"><span class="annot"><span class="hs-identifier hs-type">FromJSON</span></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#Choices"><span class="hs-identifier hs-type">Choices</span></a></span></span></span></span><span> </span><span>
-</span><span id="line-44"></span><span>
-</span><span id="line-45"></span><span class="annot"><span class="hs-comment">-- | Minimal JSON response datatype from OpenAI's GPT-3.5-Turbo model</span></span><span>
-</span><span id="line-46"></span><span class="hs-keyword">data</span><span> </span><span id="OpenAIResponse"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIResponse"><span class="hs-identifier hs-var">OpenAIResponse</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="OpenAIResponse"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIResponse"><span class="hs-identifier hs-var">OpenAIResponse</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="model"><span class="annot"><span class="annottext">OpenAIResponse -&gt; String
+</span><span id="line-43"></span><span>
+</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679134670"><span id="local-6989586621679134677"><span id="local-6989586621679134680"><span class="annot"><span class="hs-identifier hs-type">FromJSON</span></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#Choices"><span class="hs-identifier hs-type">Choices</span></a></span></span></span></span><span> </span><span>
+</span><span id="line-45"></span><span>
+</span><span id="line-46"></span><span class="annot"><span class="hs-comment">-- | Minimal JSON response datatype from OpenAI's GPT-3.5-Turbo model</span></span><span>
+</span><span id="line-47"></span><span class="hs-keyword">data</span><span> </span><span id="OpenAIResponse"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIResponse"><span class="hs-identifier hs-var">OpenAIResponse</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="OpenAIResponse"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIResponse"><span class="hs-identifier hs-var">OpenAIResponse</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="model"><span class="annot"><span class="annottext">OpenAIResponse -&gt; String
 </span><a href="TypeChain.ChatModels.OpenAI.html#model"><span class="hs-identifier hs-var hs-var">model</span></a></span></span><span>   </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-47"></span><span>                                     </span><span class="hs-special">,</span><span> </span><span id="choices"><span class="annot"><span class="annottext">OpenAIResponse -&gt; [Choices]
+</span><span id="line-48"></span><span>                                     </span><span class="hs-special">,</span><span> </span><span id="choices"><span class="annot"><span class="annottext">OpenAIResponse -&gt; [Choices]
 </span><a href="TypeChain.ChatModels.OpenAI.html#choices"><span class="hs-identifier hs-var hs-var">choices</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#Choices"><span class="hs-identifier hs-type">Choices</span></a></span><span class="hs-special">]</span><span>
-</span><span id="line-48"></span><span>                                     </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621679130740"><span id="local-6989586621679130742"><span class="annot"><span class="annottext">(forall x. OpenAIResponse -&gt; Rep OpenAIResponse x)
+</span><span id="line-49"></span><span>                                     </span><span class="hs-special">}</span><span> </span><span class="hs-keyword">deriving</span><span> </span><span id="local-6989586621679134778"><span id="local-6989586621679134780"><span class="annot"><span class="annottext">(forall x. OpenAIResponse -&gt; Rep OpenAIResponse x)
 -&gt; (forall x. Rep OpenAIResponse x -&gt; OpenAIResponse)
 -&gt; Generic OpenAIResponse
 forall x. Rep OpenAIResponse x -&gt; OpenAIResponse
@@ -95,11 +96,11 @@ from :: forall x. OpenAIResponse -&gt; Rep OpenAIResponse x
 $cto :: forall x. Rep OpenAIResponse x -&gt; OpenAIResponse
 to :: forall x. Rep OpenAIResponse x -&gt; OpenAIResponse
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Generic</span></span></span></span><span>
-</span><span id="line-49"></span><span>
 </span><span id="line-50"></span><span>
-</span><span id="line-51"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679130746"><span id="local-6989586621679130750"><span class="annot"><span class="hs-identifier hs-type">FromJSON</span></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIResponse"><span class="hs-identifier hs-type">OpenAIResponse</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span> </span><span>
-</span><span id="line-52"></span><span>    </span><span id="local-6989586621679130762"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser OpenAIResponse
-</span><a href="#local-6989586621679130762"><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-51"></span><span>
+</span><span id="line-52"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679134784"><span id="local-6989586621679134788"><span class="annot"><span class="hs-identifier hs-type">FromJSON</span></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIResponse"><span class="hs-identifier hs-type">OpenAIResponse</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span> </span><span>
+</span><span id="line-53"></span><span>    </span><span id="local-6989586621679134800"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser OpenAIResponse
+</span><a href="#local-6989586621679134800"><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser OpenAIResponse)
 -&gt; Value
 -&gt; Parser OpenAIResponse
@@ -111,21 +112,21 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser OpenAIResponse
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679130765"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679130765"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span> </span><span>
-</span><span id="line-53"></span><span>        </span><span id="local-6989586621679130766"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679130766"><span class="hs-identifier hs-var">model</span></a></span></span><span>   </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679130765"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Key -&gt; Parser String
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679134803"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679134803"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span> </span><span>
+</span><span id="line-54"></span><span>        </span><span id="local-6989586621679134804"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679134804"><span class="hs-identifier hs-var">model</span></a></span></span><span>   </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679134803"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Key -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Key -&gt; Parser a
 </span><span class="hs-operator hs-var">.:</span></span><span> </span><span class="annot"><span class="annottext">Key
 </span><span class="hs-string">&quot;model&quot;</span></span><span>
-</span><span id="line-54"></span><span>        </span><span id="local-6989586621679130768"><span class="annot"><span class="annottext">[Choices]
-</span><a href="#local-6989586621679130768"><span class="hs-identifier hs-var">choices</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679130765"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Key -&gt; Parser [Choices]
+</span><span id="line-55"></span><span>        </span><span id="local-6989586621679134806"><span class="annot"><span class="annottext">[Choices]
+</span><a href="#local-6989586621679134806"><span class="hs-identifier hs-var">choices</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679134803"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Key -&gt; Parser [Choices]
 forall a. FromJSON a =&gt; Object -&gt; Key -&gt; Parser a
 </span><span class="hs-operator hs-var">.:</span></span><span> </span><span class="annot"><span class="annottext">Key
 </span><span class="hs-string">&quot;choices&quot;</span></span><span>
-</span><span id="line-55"></span><span>        </span><span class="annot"><span class="annottext">OpenAIResponse -&gt; Parser OpenAIResponse
+</span><span id="line-56"></span><span>        </span><span class="annot"><span class="annottext">OpenAIResponse -&gt; Parser OpenAIResponse
 forall a. a -&gt; Parser a
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(OpenAIResponse -&gt; Parser OpenAIResponse)
@@ -133,111 +134,117 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [Choices] -&gt; OpenAIResponse
 </span><a href="TypeChain.ChatModels.OpenAI.html#OpenAIResponse"><span class="hs-identifier hs-var">OpenAIResponse</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679130766"><span class="hs-identifier hs-var">model</span></a></span><span> </span><span class="annot"><span class="annottext">[Choices]
-</span><a href="#local-6989586621679130768"><span class="hs-identifier hs-var">choices</span></a></span><span>
-</span><span id="line-56"></span><span>
-</span><span id="line-57"></span><span class="annot"><span class="hs-comment">-- | Create a GPT35Turbo model with default values</span></span><span>
-</span><span id="line-58"></span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35Turbo"><span class="hs-identifier hs-type">mkGPT35Turbo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.Types.html#ApiKey"><span class="hs-identifier hs-type">ApiKey</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TypeChain.ChatModels.Types.html#Message"><span class="hs-identifier hs-type">Message</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-type">GPT35Turbo</span></a></span><span>
-</span><span id="line-59"></span><span id="mkGPT35Turbo"><span class="annot"><span class="annottext">mkGPT35Turbo :: ByteString -&gt; [Message] -&gt; GPT35Turbo
-</span><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35Turbo"><span class="hs-identifier hs-var hs-var">mkGPT35Turbo</span></a></span></span><span> </span><span id="local-6989586621679130769"><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679130769"><span class="hs-identifier hs-var">k</span></a></span></span><span> </span><span id="local-6989586621679130770"><span class="annot"><span class="annottext">[Message]
-</span><a href="#local-6989586621679130770"><span class="hs-identifier hs-var">messages</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; [Message] -&gt; Float -&gt; GPT35Turbo
+</span><a href="#local-6989586621679134804"><span class="hs-identifier hs-var">model</span></a></span><span> </span><span class="annot"><span class="annottext">[Choices]
+</span><a href="#local-6989586621679134806"><span class="hs-identifier hs-var">choices</span></a></span><span>
+</span><span id="line-57"></span><span>
+</span><span id="line-58"></span><span class="annot"><span class="hs-comment">-- | Create a GPT35Turbo model with default values</span></span><span>
+</span><span id="line-59"></span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35Turbo"><span class="hs-identifier hs-type">mkGPT35Turbo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.Types.html#ApiKey"><span class="hs-identifier hs-type">ApiKey</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TypeChain.ChatModels.Types.html#Message"><span class="hs-identifier hs-type">Message</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-type">GPT35Turbo</span></a></span><span>
+</span><span id="line-60"></span><span id="mkGPT35Turbo"><span class="annot"><span class="annottext">mkGPT35Turbo :: ByteString -&gt; [Message] -&gt; GPT35Turbo
+</span><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35Turbo"><span class="hs-identifier hs-var hs-var">mkGPT35Turbo</span></a></span></span><span> </span><span id="local-6989586621679134807"><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679134807"><span class="hs-identifier hs-var">k</span></a></span></span><span> </span><span id="local-6989586621679134808"><span class="annot"><span class="annottext">[Message]
+</span><a href="#local-6989586621679134808"><span class="hs-identifier hs-var">messages</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; [Message] -&gt; Float -&gt; GPT35Turbo
 </span><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-var">GPT35Turbo</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679130769"><span class="hs-identifier hs-var">k</span></a></span><span> </span><span class="annot"><span class="annottext">[Message]
-</span><a href="#local-6989586621679130770"><span class="hs-identifier hs-var">messages</span></a></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679134807"><span class="hs-identifier hs-var">k</span></a></span><span> </span><span class="annot"><span class="annottext">[Message]
+</span><a href="#local-6989586621679134808"><span class="hs-identifier hs-var">messages</span></a></span><span> </span><span class="annot"><span class="annottext">Float
 </span><span class="hs-number">0.9</span></span><span>
-</span><span id="line-60"></span><span>
-</span><span id="line-61"></span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35TurboHeaders"><span class="hs-identifier hs-type">mkGPT35TurboHeaders</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.Types.html#ApiKey"><span class="hs-identifier hs-type">ApiKey</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">RequestHeaders</span></span><span>
-</span><span id="line-62"></span><span id="mkGPT35TurboHeaders"><span class="annot"><span class="annottext">mkGPT35TurboHeaders :: ByteString -&gt; RequestHeaders
-</span><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35TurboHeaders"><span class="hs-identifier hs-var hs-var">mkGPT35TurboHeaders</span></a></span></span><span> </span><span id="local-6989586621679130772"><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679130772"><span class="hs-identifier hs-var">k</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="annottext">HeaderName
+</span><span id="line-61"></span><span>
+</span><span id="line-62"></span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35TurboHeaders"><span class="hs-identifier hs-type">mkGPT35TurboHeaders</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.Types.html#ApiKey"><span class="hs-identifier hs-type">ApiKey</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">RequestHeaders</span></span><span>
+</span><span id="line-63"></span><span id="mkGPT35TurboHeaders"><span class="annot"><span class="annottext">mkGPT35TurboHeaders :: ByteString -&gt; RequestHeaders
+</span><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35TurboHeaders"><span class="hs-identifier hs-var hs-var">mkGPT35TurboHeaders</span></a></span></span><span> </span><span id="local-6989586621679134810"><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679134810"><span class="hs-identifier hs-var">k</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="annottext">HeaderName
 </span><span class="hs-string">&quot;Content-Type&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ByteString
 </span><span class="hs-string">&quot;application/json&quot;</span></span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">HeaderName
 </span><span class="hs-string">&quot;Authorization&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ByteString
 </span><span class="hs-string">&quot;Bearer &quot;</span></span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; ByteString -&gt; ByteString
 forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679130772"><span class="hs-identifier hs-var">k</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span>
-</span><span id="line-63"></span><span>
-</span><span id="line-64"></span><span id="local-6989586621679130478"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35TurboRequest"><span class="hs-identifier hs-type">mkGPT35TurboRequest</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadThrow</span></span><span> </span><span class="annot"><a href="#local-6989586621679130478"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-type">GPT35Turbo</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679130478"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Request</span></span></span><span>
-</span><span id="line-65"></span><span id="mkGPT35TurboRequest"><span class="annot"><span class="annottext">mkGPT35TurboRequest :: forall (m :: * -&gt; *). MonadThrow m =&gt; GPT35Turbo -&gt; m Request
-</span><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35TurboRequest"><span class="hs-identifier hs-var hs-var">mkGPT35TurboRequest</span></a></span></span><span> </span><span id="local-6989586621679130782"><span class="annot"><span class="annottext">gpt :: GPT35Turbo
-</span><a href="#local-6989586621679130782"><span class="hs-identifier hs-var">gpt</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-type">GPT35Turbo</span></a></span><span> </span><span id="local-6989586621679130783"><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679130783"><span class="hs-identifier hs-var">k</span></a></span></span><span> </span><span id="local-6989586621679130784"><span class="annot"><span class="annottext">[Message]
-</span><a href="#local-6989586621679130784"><span class="hs-identifier hs-var">msgs</span></a></span></span><span> </span><span id="local-6989586621679130785"><span class="annot"><span class="annottext">Float
-</span><a href="#local-6989586621679130785"><span class="hs-identifier hs-var">temp</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span> </span><span>
-</span><span id="line-66"></span><span>    </span><span id="local-6989586621679130786"><span class="annot"><span class="annottext">Request
-</span><a href="#local-6989586621679130786"><span class="hs-identifier hs-var">initReq</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; m Request
+</span><a href="#local-6989586621679134810"><span class="hs-identifier hs-var">k</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span>
+</span><span id="line-64"></span><span>
+</span><span id="line-65"></span><span id="local-6989586621679134519"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35TurboRequest"><span class="hs-identifier hs-type">mkGPT35TurboRequest</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadThrow</span></span><span> </span><span class="annot"><a href="#local-6989586621679134519"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-type">GPT35Turbo</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679134519"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Request</span></span></span><span>
+</span><span id="line-66"></span><span id="mkGPT35TurboRequest"><span class="annot"><span class="annottext">mkGPT35TurboRequest :: forall (m :: * -&gt; *). MonadThrow m =&gt; GPT35Turbo -&gt; m Request
+</span><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35TurboRequest"><span class="hs-identifier hs-var hs-var">mkGPT35TurboRequest</span></a></span></span><span> </span><span id="local-6989586621679134820"><span class="annot"><span class="annottext">gpt :: GPT35Turbo
+</span><a href="#local-6989586621679134820"><span class="hs-identifier hs-var">gpt</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-type">GPT35Turbo</span></a></span><span> </span><span id="local-6989586621679134821"><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679134821"><span class="hs-identifier hs-var">k</span></a></span></span><span> </span><span id="local-6989586621679134822"><span class="annot"><span class="annottext">[Message]
+</span><a href="#local-6989586621679134822"><span class="hs-identifier hs-var">msgs</span></a></span></span><span> </span><span id="local-6989586621679134823"><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679134823"><span class="hs-identifier hs-var">temp</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span> </span><span>
+</span><span id="line-67"></span><span>    </span><span id="local-6989586621679134824"><span class="annot"><span class="annottext">Request
+</span><a href="#local-6989586621679134824"><span class="hs-identifier hs-var">initReq</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; m Request
 forall (m :: * -&gt; *). MonadThrow m =&gt; String -&gt; m Request
 </span><span class="hs-identifier hs-var">parseRequest</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;https://api.openai.com/v1/chat/completions&quot;</span></span><span>
-</span><span id="line-67"></span><span>    </span><span class="annot"><span class="annottext">Request -&gt; m Request
+</span><span id="line-68"></span><span>    </span><span class="annot"><span class="annottext">Request -&gt; m Request
 forall a. a -&gt; m a
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Request -&gt; m Request) -&gt; Request -&gt; m Request
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Request
-</span><a href="#local-6989586621679130786"><span class="hs-identifier hs-var">initReq</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">requestHeaders :: RequestHeaders
+</span><a href="#local-6989586621679134824"><span class="hs-identifier hs-var">initReq</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">requestHeaders :: RequestHeaders
 </span><span class="hs-identifier hs-var">requestHeaders</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; RequestHeaders
 </span><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35TurboHeaders"><span class="hs-identifier hs-var">mkGPT35TurboHeaders</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679130783"><span class="hs-identifier hs-var">k</span></a></span><span>
-</span><span id="line-68"></span><span>                     </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">requestBody :: RequestBody
+</span><a href="#local-6989586621679134821"><span class="hs-identifier hs-var">k</span></a></span><span>
+</span><span id="line-69"></span><span>                     </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">requestBody :: RequestBody
 </span><span class="hs-identifier hs-var">requestBody</span></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; RequestBody
 </span><span class="hs-identifier hs-var">RequestBodyLBS</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">GPT35Turbo -&gt; ByteString
 forall a. ToJSON a =&gt; a -&gt; ByteString
 </span><span class="hs-identifier hs-var">encode</span></span><span> </span><span class="annot"><span class="annottext">GPT35Turbo
-</span><a href="#local-6989586621679130782"><span class="hs-identifier hs-var">gpt</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-69"></span><span>                     </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">method :: ByteString
+</span><a href="#local-6989586621679134820"><span class="hs-identifier hs-var">gpt</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-70"></span><span>                     </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">method :: ByteString
 </span><span class="hs-identifier hs-var">method</span></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString
 </span><span class="hs-string">&quot;POST&quot;</span></span><span>
-</span><span id="line-70"></span><span>                     </span><span class="hs-special">}</span><span>
-</span><span id="line-71"></span><span>
-</span><span id="line-72"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679130794"><span id="local-6989586621679130802"><span id="local-6989586621679130809"><span id="local-6989586621679130816"><span id="local-6989586621679130823"><span id="local-6989586621679130831"><span class="annot"><a href="TypeChain.ChatModels.Types.html#ChatModel"><span class="hs-identifier hs-type">ChatModel</span></a></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-type">GPT35Turbo</span></a></span></span></span></span></span></span></span><span> </span><span class="hs-keyword">where</span><span> </span><span>
-</span><span id="line-73"></span><span>    </span><span id="local-6989586621679130873"><span class="annot"><span class="annottext">predictsMsgs :: forall (m :: * -&gt; *) s.
-(MonadIO m, MonadThrow m) =&gt;
-Lens' s GPT35Turbo -&gt; [Message] -&gt; StateT s m [Message]
-</span><a href="#local-6989586621679130873"><span class="hs-identifier hs-var hs-var hs-var hs-var">predictsMsgs</span></a></span></span><span> </span><span id="local-6989586621679130875"><span class="annot"><span class="annottext">Lens' s GPT35Turbo
-</span><a href="#local-6989586621679130875"><span class="hs-identifier hs-var">model</span></a></span></span><span> </span><span id="local-6989586621679130876"><span class="annot"><span class="annottext">[Message]
-</span><a href="#local-6989586621679130876"><span class="hs-identifier hs-var">msgs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span> </span><span>
-</span><span id="line-74"></span><span>        </span><span class="annot"><span class="annottext">Lens' s GPT35Turbo -&gt; [Message] -&gt; StateT s m ()
-forall a (m :: * -&gt; *) s.
-(ChatModel a, Monad m) =&gt;
-Lens' s a -&gt; [Message] -&gt; StateT s m ()
-forall (m :: * -&gt; *) s.
-Monad m =&gt;
-Lens' s GPT35Turbo -&gt; [Message] -&gt; StateT s m ()
+</span><span id="line-71"></span><span>                     </span><span class="hs-special">}</span><span>
+</span><span id="line-72"></span><span>
+</span><span id="line-73"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679134832"><span id="local-6989586621679134843"><span class="annot"><a href="TypeChain.ChatModels.Types.html#ChatModel"><span class="hs-identifier hs-type">ChatModel</span></a></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-type">GPT35Turbo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span> </span><span>
+</span><span id="line-74"></span><span>    </span><span id="local-6989586621679134888"><span class="annot"><span class="annottext">predicts :: forall (m :: * -&gt; *) msg s.
+(MonadIO m, MonadThrow m, MsgList msg) =&gt;
+Lens' s GPT35Turbo -&gt; msg -&gt; StateT s m [Message]
+</span><a href="#local-6989586621679134888"><span class="hs-identifier hs-var hs-var hs-var hs-var">predicts</span></a></span></span><span> </span><span id="local-6989586621679134890"><span class="annot"><span class="annottext">Lens' s GPT35Turbo
+</span><a href="#local-6989586621679134890"><span class="hs-identifier hs-var">model</span></a></span></span><span> </span><span id="local-6989586621679134891"><span class="annot"><span class="annottext">msg
+</span><a href="#local-6989586621679134891"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span> </span><span>
+</span><span id="line-75"></span><span>        </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679134893"><span class="annot"><span class="annottext">msgs :: [Message]
+</span><a href="#local-6989586621679134893"><span class="hs-identifier hs-var hs-var">msgs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">msg -&gt; [Message]
+forall a. MsgList a =&gt; a -&gt; [Message]
+</span><a href="TypeChain.ChatModels.Types.html#toMsgList"><span class="hs-identifier hs-var">toMsgList</span></a></span><span> </span><span class="annot"><span class="annottext">msg
+</span><a href="#local-6989586621679134891"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-76"></span><span>
+</span><span id="line-77"></span><span>        </span><span class="annot"><span class="annottext">Lens' s GPT35Turbo -&gt; [Message] -&gt; StateT s m ()
+forall a (m :: * -&gt; *) msg s.
+(ChatModel a, Monad m, MsgList msg) =&gt;
+Lens' s a -&gt; msg -&gt; StateT s m ()
+forall (m :: * -&gt; *) msg s.
+(Monad m, MsgList msg) =&gt;
+Lens' s GPT35Turbo -&gt; msg -&gt; StateT s m ()
 </span><a href="TypeChain.ChatModels.Types.html#addMsgsTo"><span class="hs-identifier hs-var">addMsgsTo</span></a></span><span> </span><span class="annot"><span class="annottext">(GPT35Turbo -&gt; f GPT35Turbo) -&gt; s -&gt; f s
 Lens' s GPT35Turbo
-</span><a href="#local-6989586621679130875"><span class="hs-identifier hs-var">model</span></a></span><span> </span><span class="annot"><span class="annottext">[Message]
-</span><a href="#local-6989586621679130876"><span class="hs-identifier hs-var">msgs</span></a></span><span>
-</span><span id="line-75"></span><span>
-</span><span id="line-76"></span><span>        </span><span id="local-6989586621679130880"><span class="annot"><span class="annottext">GPT35Turbo
-</span><a href="#local-6989586621679130880"><span class="hs-identifier hs-var">gpt</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">(s -&gt; GPT35Turbo) -&gt; StateT s m GPT35Turbo
+</span><a href="#local-6989586621679134890"><span class="hs-identifier hs-var">model</span></a></span><span> </span><span class="annot"><span class="annottext">[Message]
+</span><a href="#local-6989586621679134893"><span class="hs-identifier hs-var">msgs</span></a></span><span>
+</span><span id="line-78"></span><span>
+</span><span id="line-79"></span><span>        </span><span id="local-6989586621679134898"><span class="annot"><span class="annottext">GPT35Turbo
+</span><a href="#local-6989586621679134898"><span class="hs-identifier hs-var">gpt</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">(s -&gt; GPT35Turbo) -&gt; StateT s m GPT35Turbo
 forall s (m :: * -&gt; *) a. MonadState s m =&gt; (s -&gt; a) -&gt; m a
 </span><span class="hs-identifier hs-var">gets</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Getting GPT35Turbo s GPT35Turbo -&gt; s -&gt; GPT35Turbo
 forall s (m :: * -&gt; *) a. MonadReader s m =&gt; Getting a s a -&gt; m a
 </span><span class="hs-identifier hs-var">view</span></span><span> </span><span class="annot"><span class="annottext">Getting GPT35Turbo s GPT35Turbo
 Lens' s GPT35Turbo
-</span><a href="#local-6989586621679130875"><span class="hs-identifier hs-var">model</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-77"></span><span>        </span><span id="local-6989586621679130883"><span class="annot"><span class="annottext">Request
-</span><a href="#local-6989586621679130883"><span class="hs-identifier hs-var">req</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">GPT35Turbo -&gt; StateT s m Request
+</span><a href="#local-6989586621679134890"><span class="hs-identifier hs-var">model</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-80"></span><span>        </span><span id="local-6989586621679134901"><span class="annot"><span class="annottext">Request
+</span><a href="#local-6989586621679134901"><span class="hs-identifier hs-var">req</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">GPT35Turbo -&gt; StateT s m Request
 forall (m :: * -&gt; *). MonadThrow m =&gt; GPT35Turbo -&gt; m Request
 </span><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35TurboRequest"><span class="hs-identifier hs-var">mkGPT35TurboRequest</span></a></span><span> </span><span class="annot"><span class="annottext">GPT35Turbo
-</span><a href="#local-6989586621679130880"><span class="hs-identifier hs-var">gpt</span></a></span><span>
-</span><span id="line-78"></span><span>        </span><span id="local-6989586621679130884"><span class="annot"><span class="annottext">Response ByteString
-</span><a href="#local-6989586621679130884"><span class="hs-identifier hs-var">res</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Request -&gt; StateT s m (Response ByteString)
+</span><a href="#local-6989586621679134898"><span class="hs-identifier hs-var">gpt</span></a></span><span>
+</span><span id="line-81"></span><span>        </span><span id="local-6989586621679134902"><span class="annot"><span class="annottext">Response ByteString
+</span><a href="#local-6989586621679134902"><span class="hs-identifier hs-var">res</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Request -&gt; StateT s m (Response ByteString)
 forall (m :: * -&gt; *).
 MonadIO m =&gt;
 Request -&gt; m (Response ByteString)
 </span><span class="hs-identifier hs-var">httpLBS</span></span><span> </span><span class="annot"><span class="annottext">Request
-</span><a href="#local-6989586621679130883"><span class="hs-identifier hs-var">req</span></a></span><span>
-</span><span id="line-79"></span><span>
-</span><span id="line-80"></span><span>        </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">forall a. FromJSON a =&gt; ByteString -&gt; Maybe a
+</span><a href="#local-6989586621679134901"><span class="hs-identifier hs-var">req</span></a></span><span>
+</span><span id="line-82"></span><span>
+</span><span id="line-83"></span><span>        </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">forall a. FromJSON a =&gt; ByteString -&gt; Maybe a
 </span><span class="hs-identifier hs-var">decode</span></span><span> </span><span class="hs-glyph">@</span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIResponse"><span class="hs-identifier hs-type">OpenAIResponse</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Response ByteString -&gt; ByteString
 forall body. Response body -&gt; body
 </span><span class="hs-identifier hs-var">responseBody</span></span><span> </span><span class="annot"><span class="annottext">Response ByteString
-</span><a href="#local-6989586621679130884"><span class="hs-identifier hs-var">res</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-keyword">of</span><span> </span><span>
-</span><span id="line-81"></span><span>            </span><span class="annot"><span class="annottext">Maybe OpenAIResponse
+</span><a href="#local-6989586621679134902"><span class="hs-identifier hs-var">res</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-keyword">of</span><span> </span><span>
+</span><span id="line-84"></span><span>            </span><span class="annot"><span class="annottext">Maybe OpenAIResponse
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">IO [Message] -&gt; StateT s m [Message]
 forall a. IO a -&gt; StateT s m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
@@ -246,58 +253,52 @@ forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; IO ()
 </span><span class="hs-identifier hs-var">putStrLn</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;WARNING: Failed to decode OpenAIResponse&quot;</span></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO [Message] -&gt; IO [Message]
-forall a b. IO a -&gt; IO b -&gt; IO b
-forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
-</span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">[Message] -&gt; IO [Message]
-forall a. a -&gt; IO a
-forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
-</span><span class="hs-identifier hs-var">pure</span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
-</span><span id="line-82"></span><span>            </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679130890"><span class="annot"><span class="annottext">OpenAIResponse
-</span><a href="#local-6989586621679130890"><span class="hs-identifier hs-var">r</span></a></span></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679130891"><span class="annot"><span class="annottext">newMsgs :: [Message]
-</span><a href="#local-6989586621679130891"><span class="hs-identifier hs-var hs-var">newMsgs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Choices -&gt; Message) -&gt; [Choices] -&gt; [Message]
+</span><span class="hs-string">&quot;WARNING: Failed to decode OpenAIResponse&quot;</span></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; [Message] -&gt; IO [Message]
+forall (f :: * -&gt; *) a b. Functor f =&gt; f a -&gt; b -&gt; f b
+</span><span class="hs-operator hs-var">$&gt;</span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-85"></span><span>            </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679134908"><span class="annot"><span class="annottext">OpenAIResponse
+</span><a href="#local-6989586621679134908"><span class="hs-identifier hs-var">r</span></a></span></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679134909"><span class="annot"><span class="annottext">newMsgs :: [Message]
+</span><a href="#local-6989586621679134909"><span class="hs-identifier hs-var hs-var">newMsgs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Choices -&gt; Message) -&gt; [Choices] -&gt; [Message]
 forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="annot"><span class="annottext">Choices -&gt; Message
 </span><a href="TypeChain.ChatModels.OpenAI.html#message"><span class="hs-identifier hs-var">message</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">OpenAIResponse -&gt; [Choices]
 </span><a href="TypeChain.ChatModels.OpenAI.html#choices"><span class="hs-identifier hs-var">choices</span></a></span><span> </span><span class="annot"><span class="annottext">OpenAIResponse
-</span><a href="#local-6989586621679130890"><span class="hs-identifier hs-var">r</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-keyword">in</span><span> </span><span class="annot"><span class="annottext">Lens' s GPT35Turbo -&gt; [Message] -&gt; StateT s m ()
-forall a (m :: * -&gt; *) s.
-(ChatModel a, Monad m) =&gt;
-Lens' s a -&gt; [Message] -&gt; StateT s m ()
-forall (m :: * -&gt; *) s.
-Monad m =&gt;
-Lens' s GPT35Turbo -&gt; [Message] -&gt; StateT s m ()
+</span><a href="#local-6989586621679134908"><span class="hs-identifier hs-var">r</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-keyword">in</span><span> </span><span class="annot"><span class="annottext">Lens' s GPT35Turbo -&gt; [Message] -&gt; StateT s m ()
+forall a (m :: * -&gt; *) msg s.
+(ChatModel a, Monad m, MsgList msg) =&gt;
+Lens' s a -&gt; msg -&gt; StateT s m ()
+forall (m :: * -&gt; *) msg s.
+(Monad m, MsgList msg) =&gt;
+Lens' s GPT35Turbo -&gt; msg -&gt; StateT s m ()
 </span><a href="TypeChain.ChatModels.Types.html#addMsgsTo"><span class="hs-identifier hs-var">addMsgsTo</span></a></span><span> </span><span class="annot"><span class="annottext">(GPT35Turbo -&gt; f GPT35Turbo) -&gt; s -&gt; f s
 Lens' s GPT35Turbo
-</span><a href="#local-6989586621679130875"><span class="hs-identifier hs-var">model</span></a></span><span> </span><span class="annot"><span class="annottext">[Message]
-</span><a href="#local-6989586621679130891"><span class="hs-identifier hs-var">newMsgs</span></a></span><span> </span><span class="annot"><span class="annottext">StateT s m () -&gt; StateT s m [Message] -&gt; StateT s m [Message]
-forall a b. StateT s m a -&gt; StateT s m b -&gt; StateT s m b
-forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
-</span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">[Message] -&gt; StateT s m [Message]
-forall a. a -&gt; StateT s m a
-forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
-</span><span class="hs-identifier hs-var">pure</span></span><span> </span><span class="annot"><span class="annottext">[Message]
-</span><a href="#local-6989586621679130891"><span class="hs-identifier hs-var">newMsgs</span></a></span><span>
-</span><span id="line-83"></span><span>
-</span><span id="line-84"></span><span>    </span><span id="local-6989586621679130900"><span class="annot"><span class="annottext">addMsgsTo :: forall (m :: * -&gt; *) s.
-Monad m =&gt;
-Lens' s GPT35Turbo -&gt; [Message] -&gt; StateT s m ()
-</span><a href="TypeChain.ChatModels.Types.html#addMsgsTo"><span class="hs-identifier hs-var hs-var hs-var hs-var">addMsgsTo</span></a></span></span><span> </span><span id="local-6989586621679130901"><span class="annot"><span class="annottext">Lens' s GPT35Turbo
-</span><a href="#local-6989586621679130901"><span class="hs-identifier hs-var">model</span></a></span></span><span> </span><span id="local-6989586621679130902"><span class="annot"><span class="annottext">[Message]
-</span><a href="#local-6989586621679130902"><span class="hs-identifier hs-var">msgs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(GPT35Turbo -&gt; Identity GPT35Turbo) -&gt; s -&gt; Identity s
+</span><a href="#local-6989586621679134890"><span class="hs-identifier hs-var">model</span></a></span><span> </span><span class="annot"><span class="annottext">[Message]
+</span><a href="#local-6989586621679134909"><span class="hs-identifier hs-var">newMsgs</span></a></span><span> </span><span class="annot"><span class="annottext">StateT s m () -&gt; [Message] -&gt; StateT s m [Message]
+forall (f :: * -&gt; *) a b. Functor f =&gt; f a -&gt; b -&gt; f b
+</span><span class="hs-operator hs-var">$&gt;</span></span><span> </span><span class="annot"><span class="annottext">[Message]
+</span><a href="#local-6989586621679134909"><span class="hs-identifier hs-var">newMsgs</span></a></span><span>
+</span><span id="line-86"></span><span>
+</span><span id="line-87"></span><span>    </span><span id="local-6989586621679134920"><span class="annot"><span class="annottext">addMsgsTo :: forall (m :: * -&gt; *) msg s.
+(Monad m, MsgList msg) =&gt;
+Lens' s GPT35Turbo -&gt; msg -&gt; StateT s m ()
+</span><a href="TypeChain.ChatModels.Types.html#addMsgsTo"><span class="hs-identifier hs-var hs-var hs-var hs-var">addMsgsTo</span></a></span></span><span> </span><span id="local-6989586621679134921"><span class="annot"><span class="annottext">Lens' s GPT35Turbo
+</span><a href="#local-6989586621679134921"><span class="hs-identifier hs-var">model</span></a></span></span><span> </span><span id="local-6989586621679134922"><span class="annot"><span class="annottext">msg
+</span><a href="#local-6989586621679134922"><span class="hs-identifier hs-var">msgs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(GPT35Turbo -&gt; Identity GPT35Turbo) -&gt; s -&gt; Identity s
 Lens' s GPT35Turbo
-</span><a href="#local-6989586621679130901"><span class="hs-identifier hs-var">model</span></a></span><span> </span><span class="annot"><span class="annottext">((GPT35Turbo -&gt; Identity GPT35Turbo) -&gt; s -&gt; Identity s)
+</span><a href="#local-6989586621679134921"><span class="hs-identifier hs-var">model</span></a></span><span> </span><span class="annot"><span class="annottext">((GPT35Turbo -&gt; Identity GPT35Turbo) -&gt; s -&gt; Identity s)
 -&gt; (GPT35Turbo -&gt; GPT35Turbo) -&gt; StateT s m ()
 forall s (m :: * -&gt; *) a b.
 MonadState s m =&gt;
 ASetter s s a b -&gt; (a -&gt; b) -&gt; m ()
-</span><span class="hs-operator hs-var">%=</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679130904"><span class="annot"><span class="annottext">GPT35Turbo
-</span><a href="#local-6989586621679130904"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">GPT35Turbo
-</span><a href="#local-6989586621679130904"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">messages :: [Message]
+</span><span class="hs-operator hs-var">%=</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679134924"><span class="annot"><span class="annottext">GPT35Turbo
+</span><a href="#local-6989586621679134924"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">GPT35Turbo
+</span><a href="#local-6989586621679134924"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">messages :: [Message]
 </span><a href="TypeChain.ChatModels.OpenAI.html#messages"><span class="hs-identifier hs-var">messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">GPT35Turbo -&gt; [Message]
 </span><a href="TypeChain.ChatModels.OpenAI.html#messages"><span class="hs-identifier hs-var">messages</span></a></span><span> </span><span class="annot"><span class="annottext">GPT35Turbo
-</span><a href="#local-6989586621679130904"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">[Message] -&gt; [Message] -&gt; [Message]
+</span><a href="#local-6989586621679134924"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">[Message] -&gt; [Message] -&gt; [Message]
 forall a. Semigroup a =&gt; a -&gt; a -&gt; a
-</span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">[Message]
-</span><a href="#local-6989586621679130902"><span class="hs-identifier hs-var">msgs</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-85"></span></pre></body></html>
+</span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">msg -&gt; [Message]
+forall a. MsgList a =&gt; a -&gt; [Message]
+</span><a href="TypeChain.ChatModels.Types.html#toMsgList"><span class="hs-identifier hs-var">toMsgList</span></a></span><span> </span><span class="annot"><span class="annottext">msg
+</span><a href="#local-6989586621679134922"><span class="hs-identifier hs-var">msgs</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-88"></span></pre></body></html>
