@@ -90,7 +90,7 @@ convo = do
 
     -- Add appropriate context to model 2 so it thinks it asked this 
     -- question.
-    addMsgsTo _2 [Message Assistant prompt]
+    _2 `memorizes` [Message Assistant prompt]
 
     -- Ask model 1 why 1 + 1 = 2 
     -- We do this to start a conversation between the two models

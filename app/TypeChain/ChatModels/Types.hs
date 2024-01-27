@@ -16,6 +16,7 @@ module TypeChain.ChatModels.Types ( TypeChain
                                   , pattern SystemMessage
                                   , MsgList(..)
                                   , ChatModel(..) 
+                                  , RememberingChatModel(..)
                                   , module Control.Monad.State
                                   ) where 
 import Control.Lens hiding ((.=))
@@ -128,23 +129,61 @@ instance MsgList [Message] where
 class ChatModel a where 
 
     -- | Predict for current and only model
-    -- This function should prompt the model (either via API or locally), log 
-    -- the input messages, log the output messages, and return the output messages. 
+    -- This function should prompt the model (either via API or locally), and
+    -- return the response.
+    --
+    -- NOTE: If a model has the capability to remember previous messages, it 
+    -- should implement @RememberingChatModel@ and automatically manage this 
+    -- functionality in the @predict@ function.
     predict :: (MonadIO m, MonadThrow m, MsgList msg) => msg -> StateT a m [Message]
     predict = predicts id
 
     -- | Predict for a specific model via lens
     -- This function should prompt the model (either via API or locally), log 
     -- the input messages, log the output messages, and return the output messages. 
+    --
+    -- NOTE: If a model has the capability to remember previous messages, it 
+    -- should implement @RememberingChatModel@ and automatically manage this 
+    -- functionality in the @predicts@ function.
     predicts :: (MonadIO m, MonadThrow m, MsgList msg) => Lens' s a -> msg -> StateT s m [Message]
 
-    -- | Add Messages for current and only model
-    -- This function should ONLY log messages, the actual LLM itself should not 
-    -- be modified.
-    addMsgs :: (Monad m, MsgList msg) => msg -> StateT a m ()
-    addMsgs = addMsgsTo id
+-- Typeclass for chatmodels that can remember previous messages 
+class ChatModel a => RememberingChatModel a where 
+    
+    -- | Enable/Disable memory for current and only model
+    setMemoryEnabled :: Monad m => Bool -> StateT a m ()
+    setMemoryEnabled = setMemoryEnabledFor id
 
-    -- | Add Messages for specific model
-    -- This function should ONLY log messages, the actual LLM itself should not 
-    -- be modified.
-    addMsgsTo :: (Monad m, MsgList msg) => Lens' s a -> msg -> StateT s m ()
+    -- | Enable/Disable memory for specific model
+    setMemoryEnabledFor :: Monad m => Lens' s a -> Bool -> StateT s m ()
+
+    -- | Remove all remembered messages for the current and only model.
+    -- This does not affect a model's ability to remember future messages.
+    forget :: Monad m => StateT a m ()
+    forget = forgetFor id
+
+    -- | Remove all remebered messages for a specific model. 
+    -- This does not affect a model's ability to remember future messages.
+    forgetFor :: Monad m => Lens' s a -> StateT s m ()
+
+    -- | Remember a list of messages for the current and only model.
+    -- This does not affect a model's ability to remember future messages and 
+    -- should respect the current memory setting.
+    memorize :: Monad m => [Message] -> StateT a m ()
+    memorize = (id `memorizes`)
+
+    -- | Remember a list of messages for a specific model. 
+    -- This does not affect a model's ability to remember future messages and 
+    -- should respect the current memory setting.
+    memorizes :: Monad m => Lens' s a -> [Message] -> StateT s m ()
+
+    -- | Retrieve all remembered messages for the current and only model.
+    -- This does not forget any messages nor affect a model's ability to 
+    -- remember future messages.
+    remember :: Monad m => StateT a m [Message]
+    remember = rememberFor id
+
+    -- | Retrieve all remembered messages for a specific model. 
+    -- This does not forget any messages nor affect a model's ability to 
+    -- remember future messages.
+    rememberFor :: Monad m => Lens' s a -> StateT s m [Message]

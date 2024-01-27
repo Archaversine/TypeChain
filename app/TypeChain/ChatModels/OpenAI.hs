@@ -14,6 +14,7 @@ import Control.Monad.State
 import Data.Aeson
 import Data.ByteString.Lazy (ByteString)
 import Data.Functor (($>))
+import Data.Maybe (fromMaybe)
 
 import GHC.Generics (Generic)
 
@@ -23,12 +24,6 @@ import Network.HTTP.Simple
 import Network.HTTP.Conduit
 
 import qualified Data.ByteString.Lazy as BS
-
---instance ToJSON GPT35Turbo where 
---    toJSON (GPT35Turbo k msgs temp) = object [ "model"       .= ("gpt-3.5-turbo" :: String)
---                                             , "temperature" .= temp
---                                             , "messages"    .= msgs
---                                             ]
 
 data OpenAIChatModel = GPT35Turbo | GPT4 | GPT4Turbo
 
@@ -41,22 +36,16 @@ instance ToJSON OpenAIChatModel where
     toJSON = toJSON . show
 
 data OpenAIChat = OpenAIChat { chatModel   :: OpenAIChatModel
-                             , messages    :: [Message]
+                             , messages    :: Maybe [Message] -- ^ @Nothing@ = Do not remember messages
                              , temperature :: Float
                              , apiKey      :: ApiKey
                              } deriving Generic
 
 instance ToJSON OpenAIChat where 
-    toJSON (OpenAIChat m msgs t k) = object [ "model"       .= m
-                                            , "temperature" .= t
-                                            , "messages"    .= msgs
-                                            ]
-
----- | A chat model that uses OpenAI's GPT-3.5-Turbo model
---data GPT35Turbo = GPT35Turbo { key         :: ApiKey 
---                             , messages    :: [Message]
---                             , temperature :: Float
---                             }
+    toJSON model = object [ "model"       .= chatModel model
+                          , "temperature" .= temperature model
+                          , "messages"    .= messages model
+                          ]
 
 -- | A list of responses from OpenAI's GPT-3.5-Turbo model
 data Choices = Choices { message       :: Message 
@@ -78,9 +67,11 @@ instance FromJSON OpenAIResponse where
         choices <- o .: "choices"
         return $ OpenAIResponse model choices
 
--- | Create a GPT35Turbo model with default values
+-- | Create an OpenAI chat model with default values
+--
+-- Memorization is enabled by default.
 mkOpenAIChat :: OpenAIChatModel -> ApiKey -> [Message] -> OpenAIChat
-mkOpenAIChat model k messages = OpenAIChat model messages 0.7 k
+mkOpenAIChat model k messages = OpenAIChat model (Just messages) 0.7 k
 
 mkOpenAIChatHeaders :: ApiKey -> RequestHeaders
 mkOpenAIChatHeaders k = [("Content-Type", "application/json"), ("Authorization", "Bearer " <> k)]
@@ -96,8 +87,7 @@ mkGPT35TurboRequest gpt = do
 instance ChatModel OpenAIChat where 
     predicts model m = do 
         let msgs = toMsgList m
-
-        addMsgsTo model msgs
+        model `memorizes` msgs
 
         gpt <- gets (view model)
         req <- mkGPT35TurboRequest gpt
@@ -105,6 +95,21 @@ instance ChatModel OpenAIChat where
 
         case decode @OpenAIResponse (responseBody res) of 
             Nothing -> liftIO $ putStrLn "WARNING: Failed to decode OpenAIResponse" $> []
-            Just r  -> let newMsgs = map message (choices r) in addMsgsTo model newMsgs $> newMsgs
+            Just r  -> let newMsgs = map message (choices r) in model `memorizes` newMsgs $> newMsgs
 
-    addMsgsTo model msgs = model %= \m -> m { messages = messages m <> toMsgList msgs }
+instance RememberingChatModel OpenAIChat where 
+    setMemoryEnabledFor model status = do 
+        m <- gets (view model)
+        case (messages m, status) of 
+            (Nothing, True) -> model %= \m -> m { messages = Just [] }
+            (Just _, False) -> model %= \m -> m { messages = Nothing }
+            _               -> return () -- Do nothing since the status is already matching
+
+    forgetFor model = do 
+        m <- gets (view model)
+        case messages m of 
+            Nothing -> return () -- Do nothing since we're already forgetting
+            Just _  -> model %= \m -> m { messages = Just [] }
+
+    memorizes model msgs = model %= \m -> m { messages = (++) <$> messages m <*> Just (toMsgList msgs) }
+    rememberFor model = gets (fromMaybe [] . messages . view model)
