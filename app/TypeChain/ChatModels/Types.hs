@@ -89,7 +89,14 @@ instance FromJSON Message where
         content <- o .: "content"
         return $ Message role content
 
+-- | Helper typeclass to allow for multiple types to be passed to the  
+-- @ChatModel@ functions. 
+--
+-- NOTE: If this is used with the @OverloadedStrings@ extension, you will need 
+-- type annotations when using the @String@ instance.
 class MsgList a where 
+
+    -- | Convert to @a@ list of messages
     toMsgList :: a -> [Message]
 
 instance MsgList String where 
@@ -102,18 +109,42 @@ instance MsgList [Message] where
     toMsgList = id
 
 -- | A class for Chat Models
+-- In order to achieve compatibility with as many different kinds of LLMS as 
+-- possible, the predict function is constrained to MonadIO so that it has the 
+-- capability to either make an API call, run a local model, or any other action 
+-- that may require IO.
+--
+-- Computations with a @ChatModel@ are expected to be run in a @StateT@ monad 
+-- (see @TypeChain@ and @TypeChainT@ for specific types) so that the model can 
+-- be updated with new messages and the output messages can be logged. 
+--
+-- Functions that operate in a context where multiple models are available 
+-- (e.g. @predicts@ and @addMsgsTo@) use lenses to allow extraction and 
+-- modification of the model without knowing the specific state type. 
+--
+-- Exmaple: If working with two models, you can use @(model1, model2)@ as the 
+-- state type and pass the @_1@ and @_2@ lenses to @predicts@ and @addMsgsTo@
+-- to specify which model to use in the function.
 class ChatModel a where 
+
     -- | Predict for current and only model
+    -- This function should prompt the model (either via API or locally), log 
+    -- the input messages, log the output messages, and return the output messages. 
     predict :: (MonadIO m, MonadThrow m, MsgList msg) => msg -> StateT a m [Message]
-    -- Implicit type signature: 
     predict = predicts id
 
     -- | Predict for a specific model via lens
+    -- This function should prompt the model (either via API or locally), log 
+    -- the input messages, log the output messages, and return the output messages. 
     predicts :: (MonadIO m, MonadThrow m, MsgList msg) => Lens' s a -> msg -> StateT s m [Message]
 
     -- | Add Messages for current and only model
+    -- This function should ONLY log messages, the actual LLM itself should not 
+    -- be modified.
     addMsgs :: (Monad m, MsgList msg) => msg -> StateT a m ()
     addMsgs = addMsgsTo id
 
     -- | Add Messages for specific model
+    -- This function should ONLY log messages, the actual LLM itself should not 
+    -- be modified.
     addMsgsTo :: (Monad m, MsgList msg) => Lens' s a -> msg -> StateT s m ()
