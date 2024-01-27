@@ -9,9 +9,9 @@ import TypeChain.ChatModels
 
 import DotEnv
 
-chatPrompt :: String -> String -> String -> [Message]
-chatPrompt = $(makeTemplate [ (system, "You are a helpful assistant that translates {from} to {to}.")
-                            , (user, "{text}")
+--chatPrompt :: String -> String -> String -> [Message]
+chatPrompt = $(makeTemplate [ system "You are a helpful assistant that translates {from} to {to}."
+                            , user "{text}"
                             ])
  
 -- Helper function to turn assistant messages into user messages 

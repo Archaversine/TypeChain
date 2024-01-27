@@ -12,31 +12,33 @@ import TypeChain.ChatModels.Types
 
 data TemplateToken = ConstString String | Var String deriving Eq
 
-user :: Q Exp 
-user = [| UserMessage |]
+type PromptTemplate = (Q Exp, [Name])
 
-assistant :: Q Exp 
-assistant = [| AssistantMessage |] 
+user :: String -> Q PromptTemplate
+user xs = toTemplate xs [| UserMessage |]
 
-system :: Q Exp 
-system = [| SystemMessage |]
+assistant :: String -> Q PromptTemplate
+assistant xs = toTemplate xs [| AssistantMessage |]
 
-makeTemplate :: [(Q Exp, String)] -> Q Exp
-makeTemplate xs = do 
-    (exps, ps) <- mapAndUnzipM toTemplate xs 
-    let params = nub $ concat ps
-    
-    lamE (map varP params) $ listE exps
+system :: String -> Q PromptTemplate
+system xs = toTemplate xs [| SystemMessage |]
 
-toTemplate :: (Q Exp, String) -> Q (Q Exp, [Name]) 
-toTemplate (f, str) = do 
-    let tokens = parseTemplateTokens str
+toTemplate :: String -> Q Exp -> Q PromptTemplate
+toTemplate xs f = do 
+    let tokens = parseTemplateTokens xs
         names  = map mkName $ nub $ getVarTokens tokens
         params = map varP names
         func   = lamE params (appE f $ tokensToExpr tokens)
         expr   = foldl appE func (map varE names)
 
     return (expr, names)
+
+makeTemplate :: [Q PromptTemplate] -> Q Exp
+makeTemplate xs = do 
+    (exps, ps) <- unzip <$> sequence xs
+    let params = nub $ concat ps
+    
+    lamE (map varP params) $ listE exps
 
 parseTemplateTokens :: String -> [TemplateToken]
 parseTemplateTokens [] = [] 
