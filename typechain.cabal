@@ -3,7 +3,7 @@ name:               typechain
 version:            0.1.0.0
 
 -- A short (one-line) description of the package.
- synopsis:          An implementation of LangChain in Haskell
+synopsis:           An implementation of LangChain in Haskell
 
 -- A longer description of the package.
 description:        Please see README.md for examples and usage.
@@ -12,14 +12,14 @@ description:        Please see README.md for examples and usage.
 bug-reports:        https://github.com/Archaversine/TypeChain/issues
 
 -- The license under which the package is released.
-license:            GNU AGPLv3
+license:            GPL-3.0-or-later
 author:             Archaversine
 maintainer:         adam.brohl.w@gmail.com
 
 -- A copyright notice.
 copyright:          2024 Adam Brohl
 category:           AI
-extra-source-files: CHANGELOG.md, LICENSE, README.md
+extra-source-files: CHANGELOG.md, LICENSE.md, README.md
 
 executable typechain-exe
     main-is:          Main.hs
