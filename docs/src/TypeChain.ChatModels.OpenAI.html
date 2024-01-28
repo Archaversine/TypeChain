@@ -179,28 +179,31 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span id="line-70"></span><span class="hs-comment">-- | Create an OpenAI chat model with default values </span><span>
 </span><span id="line-71"></span><span class="hs-comment">--</span><span>
 </span><span id="line-72"></span><span class="hs-comment">-- Model: GPT-3.5-Turbo</span><span>
-</span><span id="line-73"></span><span class="hs-comment">-- Memorization: Enabled </span><span>
-</span><span id="line-74"></span><span class="hs-comment">-- Temperature: 0.7 </span><span>
-</span><span id="line-75"></span><span class="hs-comment">-- ApiKey: &lt;empty value&gt;</span><span>
-</span><span id="line-76"></span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#initOpenAIChat"><span class="hs-identifier hs-type">initOpenAIChat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIChat"><span class="hs-identifier hs-type">OpenAIChat</span></a></span><span>
-</span><span id="line-77"></span><span id="initOpenAIChat"><span class="annot"><span class="annottext">initOpenAIChat :: OpenAIChat
+</span><span id="line-73"></span><span class="hs-comment">--</span><span>
+</span><span id="line-74"></span><span class="hs-comment">-- Memorization: Enabled </span><span>
+</span><span id="line-75"></span><span class="hs-comment">--</span><span>
+</span><span id="line-76"></span><span class="hs-comment">-- Temperature: 0.7 </span><span>
+</span><span id="line-77"></span><span class="hs-comment">--</span><span>
+</span><span id="line-78"></span><span class="hs-comment">-- ApiKey: &lt;empty value&gt;</span><span>
+</span><span id="line-79"></span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#initOpenAIChat"><span class="hs-identifier hs-type">initOpenAIChat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIChat"><span class="hs-identifier hs-type">OpenAIChat</span></a></span><span>
+</span><span id="line-80"></span><span id="initOpenAIChat"><span class="annot"><span class="annottext">initOpenAIChat :: OpenAIChat
 </span><a href="TypeChain.ChatModels.OpenAI.html#initOpenAIChat"><span class="hs-identifier hs-var hs-var">initOpenAIChat</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIChat"><span class="hs-identifier hs-type">OpenAIChat</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chatModel :: OpenAIChatModel
 </span><a href="TypeChain.ChatModels.OpenAI.html#chatModel"><span class="hs-identifier hs-var">chatModel</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">OpenAIChatModel
 </span><a href="TypeChain.ChatModels.OpenAI.html#GPT35Turbo"><span class="hs-identifier hs-var">GPT35Turbo</span></a></span><span> </span><span>
-</span><span id="line-78"></span><span>                            </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">messages :: Maybe [Message]
+</span><span id="line-81"></span><span>                            </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">messages :: Maybe [Message]
 </span><a href="TypeChain.ChatModels.OpenAI.html#messages"><span class="hs-identifier hs-var">messages</span></a></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Message] -&gt; Maybe [Message]
 forall a. a -&gt; Maybe a
 </span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
-</span><span id="line-79"></span><span>                            </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">temperature :: Float
+</span><span id="line-82"></span><span>                            </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">temperature :: Float
 </span><a href="TypeChain.ChatModels.OpenAI.html#temperature"><span class="hs-identifier hs-var">temperature</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float
 </span><span class="hs-number">0.7</span></span><span>
-</span><span id="line-80"></span><span>                            </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">apiKey :: ByteString
+</span><span id="line-83"></span><span>                            </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">apiKey :: ByteString
 </span><a href="TypeChain.ChatModels.OpenAI.html#apiKey"><span class="hs-identifier hs-var">apiKey</span></a></span><span>      </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString
 </span><span class="hs-string">&quot;MISSING-API-KEY&quot;</span></span><span>
-</span><span id="line-81"></span><span>                            </span><span class="hs-special">}</span><span>
-</span><span id="line-82"></span><span>
-</span><span id="line-83"></span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#mkOpenAIChatHeaders"><span class="hs-identifier hs-type">mkOpenAIChatHeaders</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.Types.html#ApiKey"><span class="hs-identifier hs-type">ApiKey</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">RequestHeaders</span></span><span>
-</span><span id="line-84"></span><span id="mkOpenAIChatHeaders"><span class="annot"><span class="annottext">mkOpenAIChatHeaders :: ByteString -&gt; RequestHeaders
+</span><span id="line-84"></span><span>                            </span><span class="hs-special">}</span><span>
+</span><span id="line-85"></span><span>
+</span><span id="line-86"></span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#mkOpenAIChatHeaders"><span class="hs-identifier hs-type">mkOpenAIChatHeaders</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.Types.html#ApiKey"><span class="hs-identifier hs-type">ApiKey</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">RequestHeaders</span></span><span>
+</span><span id="line-87"></span><span id="mkOpenAIChatHeaders"><span class="annot"><span class="annottext">mkOpenAIChatHeaders :: ByteString -&gt; RequestHeaders
 </span><a href="TypeChain.ChatModels.OpenAI.html#mkOpenAIChatHeaders"><span class="hs-identifier hs-var hs-var">mkOpenAIChatHeaders</span></a></span></span><span> </span><span id="local-6989586621679136634"><span class="annot"><span class="annottext">ByteString
 </span><a href="#local-6989586621679136634"><span class="hs-identifier hs-var">k</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="annottext">HeaderName
 </span><span class="hs-string">&quot;Content-Type&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ByteString
@@ -210,17 +213,17 @@ forall a. a -&gt; Maybe a
 forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">ByteString
 </span><a href="#local-6989586621679136634"><span class="hs-identifier hs-var">k</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span>
-</span><span id="line-85"></span><span>
-</span><span id="line-86"></span><span id="local-6989586621679136283"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35TurboRequest"><span class="hs-identifier hs-type">mkGPT35TurboRequest</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadThrow</span></span><span> </span><span class="annot"><a href="#local-6989586621679136283"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIChat"><span class="hs-identifier hs-type">OpenAIChat</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679136283"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Request</span></span></span><span>
-</span><span id="line-87"></span><span id="mkGPT35TurboRequest"><span class="annot"><span class="annottext">mkGPT35TurboRequest :: forall (m :: * -&gt; *). MonadThrow m =&gt; OpenAIChat -&gt; m Request
+</span><span id="line-88"></span><span>
+</span><span id="line-89"></span><span id="local-6989586621679136283"><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35TurboRequest"><span class="hs-identifier hs-type">mkGPT35TurboRequest</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadThrow</span></span><span> </span><span class="annot"><a href="#local-6989586621679136283"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIChat"><span class="hs-identifier hs-type">OpenAIChat</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679136283"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Request</span></span></span><span>
+</span><span id="line-90"></span><span id="mkGPT35TurboRequest"><span class="annot"><span class="annottext">mkGPT35TurboRequest :: forall (m :: * -&gt; *). MonadThrow m =&gt; OpenAIChat -&gt; m Request
 </span><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35TurboRequest"><span class="hs-identifier hs-var hs-var">mkGPT35TurboRequest</span></a></span></span><span> </span><span id="local-6989586621679136644"><span class="annot"><span class="annottext">OpenAIChat
 </span><a href="#local-6989586621679136644"><span class="hs-identifier hs-var">gpt</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span> </span><span>
-</span><span id="line-88"></span><span>    </span><span id="local-6989586621679136645"><span class="annot"><span class="annottext">Request
+</span><span id="line-91"></span><span>    </span><span id="local-6989586621679136645"><span class="annot"><span class="annottext">Request
 </span><a href="#local-6989586621679136645"><span class="hs-identifier hs-var">initReq</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; m Request
 forall (m :: * -&gt; *). MonadThrow m =&gt; String -&gt; m Request
 </span><span class="hs-identifier hs-var">parseRequest</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;https://api.openai.com/v1/chat/completions&quot;</span></span><span>
-</span><span id="line-89"></span><span>    </span><span class="annot"><span class="annottext">Request -&gt; m Request
+</span><span id="line-92"></span><span>    </span><span class="annot"><span class="annottext">Request -&gt; m Request
 forall a. a -&gt; m a
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Request -&gt; m Request) -&gt; Request -&gt; m Request
@@ -231,30 +234,30 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="TypeChain.ChatModels.OpenAI.html#mkOpenAIChatHeaders"><span class="hs-identifier hs-var">mkOpenAIChatHeaders</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">OpenAIChat -&gt; ByteString
 </span><a href="TypeChain.ChatModels.OpenAI.html#apiKey"><span class="hs-identifier hs-var">apiKey</span></a></span><span> </span><span class="annot"><span class="annottext">OpenAIChat
 </span><a href="#local-6989586621679136644"><span class="hs-identifier hs-var">gpt</span></a></span><span class="hs-special">)</span><span> </span><span>
-</span><span id="line-90"></span><span>                     </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">requestBody :: RequestBody
+</span><span id="line-93"></span><span>                     </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">requestBody :: RequestBody
 </span><span class="hs-identifier hs-var">requestBody</span></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; RequestBody
 </span><span class="hs-identifier hs-var">RequestBodyLBS</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">OpenAIChat -&gt; ByteString
 forall a. ToJSON a =&gt; a -&gt; ByteString
 </span><span class="hs-identifier hs-var">encode</span></span><span> </span><span class="annot"><span class="annottext">OpenAIChat
 </span><a href="#local-6989586621679136644"><span class="hs-identifier hs-var">gpt</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-91"></span><span>                     </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">method :: ByteString
+</span><span id="line-94"></span><span>                     </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">method :: ByteString
 </span><span class="hs-identifier hs-var">method</span></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString
 </span><span class="hs-string">&quot;POST&quot;</span></span><span>
-</span><span id="line-92"></span><span>                     </span><span class="hs-special">}</span><span>
-</span><span id="line-93"></span><span>
-</span><span id="line-94"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679136653"><span class="annot"><a href="TypeChain.ChatModels.Types.html#ChatModel"><span class="hs-identifier hs-type">ChatModel</span></a></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIChat"><span class="hs-identifier hs-type">OpenAIChat</span></a></span></span><span> </span><span class="hs-keyword">where</span><span> </span><span>
-</span><span id="line-95"></span><span>    </span><span id="local-6989586621679136699"><span class="annot"><span class="annottext">predicts :: forall (m :: * -&gt; *) msg s.
+</span><span id="line-95"></span><span>                     </span><span class="hs-special">}</span><span>
+</span><span id="line-96"></span><span>
+</span><span id="line-97"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679136653"><span class="annot"><a href="TypeChain.ChatModels.Types.html#ChatModel"><span class="hs-identifier hs-type">ChatModel</span></a></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIChat"><span class="hs-identifier hs-type">OpenAIChat</span></a></span></span><span> </span><span class="hs-keyword">where</span><span> </span><span>
+</span><span id="line-98"></span><span>    </span><span id="local-6989586621679136699"><span class="annot"><span class="annottext">predicts :: forall (m :: * -&gt; *) msg s.
 (MonadIO m, MonadThrow m, MsgList msg) =&gt;
 Lens' s OpenAIChat -&gt; msg -&gt; TypeChainT s m [Message]
 </span><a href="#local-6989586621679136699"><span class="hs-identifier hs-var hs-var hs-var hs-var">predicts</span></a></span></span><span> </span><span id="local-6989586621679136701"><span class="annot"><span class="annottext">Lens' s OpenAIChat
 </span><a href="#local-6989586621679136701"><span class="hs-identifier hs-var">model</span></a></span></span><span> </span><span id="local-6989586621679136702"><span class="annot"><span class="annottext">msg
 </span><a href="#local-6989586621679136702"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span> </span><span>
-</span><span id="line-96"></span><span>        </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679136704"><span class="annot"><span class="annottext">msgs :: [Message]
+</span><span id="line-99"></span><span>        </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679136704"><span class="annot"><span class="annottext">msgs :: [Message]
 </span><a href="#local-6989586621679136704"><span class="hs-identifier hs-var hs-var">msgs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">msg -&gt; [Message]
 forall a. MsgList a =&gt; a -&gt; [Message]
 </span><a href="TypeChain.ChatModels.Types.html#toMsgList"><span class="hs-identifier hs-var">toMsgList</span></a></span><span> </span><span class="annot"><span class="annottext">msg
 </span><a href="#local-6989586621679136702"><span class="hs-identifier hs-var">m</span></a></span><span>
-</span><span id="line-97"></span><span>        </span><span class="annot"><span class="annottext">(OpenAIChat -&gt; f OpenAIChat) -&gt; s -&gt; f s
+</span><span id="line-100"></span><span>        </span><span class="annot"><span class="annottext">(OpenAIChat -&gt; f OpenAIChat) -&gt; s -&gt; f s
 Lens' s OpenAIChat
 </span><a href="#local-6989586621679136701"><span class="hs-identifier hs-var">model</span></a></span><span> </span><span class="annot"><span class="annottext">Lens' s OpenAIChat -&gt; [Message] -&gt; TypeChainT s m ()
 forall a (m :: * -&gt; *) s.
@@ -265,8 +268,8 @@ Monad m =&gt;
 Lens' s OpenAIChat -&gt; [Message] -&gt; TypeChainT s m ()
 </span><a href="TypeChain.ChatModels.Types.html#memorizes"><span class="hs-operator hs-var">`memorizes`</span></a></span><span> </span><span class="annot"><span class="annottext">[Message]
 </span><a href="#local-6989586621679136704"><span class="hs-identifier hs-var">msgs</span></a></span><span>
-</span><span id="line-98"></span><span>
-</span><span id="line-99"></span><span>        </span><span id="local-6989586621679136709"><span class="annot"><span class="annottext">OpenAIChat
+</span><span id="line-101"></span><span>
+</span><span id="line-102"></span><span>        </span><span id="local-6989586621679136709"><span class="annot"><span class="annottext">OpenAIChat
 </span><a href="#local-6989586621679136709"><span class="hs-identifier hs-var">gpt</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">(s -&gt; OpenAIChat) -&gt; StateT s m OpenAIChat
 forall s (m :: * -&gt; *) a. MonadState s m =&gt; (s -&gt; a) -&gt; m a
 </span><span class="hs-identifier hs-var">gets</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Getting OpenAIChat s OpenAIChat -&gt; s -&gt; OpenAIChat
@@ -274,25 +277,25 @@ forall s (m :: * -&gt; *) a. MonadReader s m =&gt; Getting a s a -&gt; m a
 </span><span class="hs-identifier hs-var">view</span></span><span> </span><span class="annot"><span class="annottext">Getting OpenAIChat s OpenAIChat
 Lens' s OpenAIChat
 </span><a href="#local-6989586621679136701"><span class="hs-identifier hs-var">model</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-100"></span><span>        </span><span id="local-6989586621679136712"><span class="annot"><span class="annottext">Request
+</span><span id="line-103"></span><span>        </span><span id="local-6989586621679136712"><span class="annot"><span class="annottext">Request
 </span><a href="#local-6989586621679136712"><span class="hs-identifier hs-var">req</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">OpenAIChat -&gt; StateT s m Request
 forall (m :: * -&gt; *). MonadThrow m =&gt; OpenAIChat -&gt; m Request
 </span><a href="TypeChain.ChatModels.OpenAI.html#mkGPT35TurboRequest"><span class="hs-identifier hs-var">mkGPT35TurboRequest</span></a></span><span> </span><span class="annot"><span class="annottext">OpenAIChat
 </span><a href="#local-6989586621679136709"><span class="hs-identifier hs-var">gpt</span></a></span><span>
-</span><span id="line-101"></span><span>        </span><span id="local-6989586621679136713"><span class="annot"><span class="annottext">Response ByteString
+</span><span id="line-104"></span><span>        </span><span id="local-6989586621679136713"><span class="annot"><span class="annottext">Response ByteString
 </span><a href="#local-6989586621679136713"><span class="hs-identifier hs-var">res</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Request -&gt; StateT s m (Response ByteString)
 forall (m :: * -&gt; *).
 MonadIO m =&gt;
 Request -&gt; m (Response ByteString)
 </span><span class="hs-identifier hs-var">httpLBS</span></span><span> </span><span class="annot"><span class="annottext">Request
 </span><a href="#local-6989586621679136712"><span class="hs-identifier hs-var">req</span></a></span><span>
-</span><span id="line-102"></span><span>
-</span><span id="line-103"></span><span>        </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">forall a. FromJSON a =&gt; ByteString -&gt; Maybe a
+</span><span id="line-105"></span><span>
+</span><span id="line-106"></span><span>        </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">forall a. FromJSON a =&gt; ByteString -&gt; Maybe a
 </span><span class="hs-identifier hs-var">decode</span></span><span> </span><span class="hs-glyph">@</span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIResponse"><span class="hs-identifier hs-type">OpenAIResponse</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Response ByteString -&gt; ByteString
 forall body. Response body -&gt; body
 </span><span class="hs-identifier hs-var">responseBody</span></span><span> </span><span class="annot"><span class="annottext">Response ByteString
 </span><a href="#local-6989586621679136713"><span class="hs-identifier hs-var">res</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-keyword">of</span><span> </span><span>
-</span><span id="line-104"></span><span>            </span><span class="annot"><span class="annottext">Maybe OpenAIResponse
+</span><span id="line-107"></span><span>            </span><span class="annot"><span class="annottext">Maybe OpenAIResponse
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">IO [Message] -&gt; TypeChainT s m [Message]
 forall a. IO a -&gt; StateT s m a
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
@@ -304,7 +307,7 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-string">&quot;WARNING: Failed to decode OpenAIResponse&quot;</span></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; [Message] -&gt; IO [Message]
 forall (f :: * -&gt; *) a b. Functor f =&gt; f a -&gt; b -&gt; f b
 </span><span class="hs-operator hs-var">$&gt;</span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
-</span><span id="line-105"></span><span>            </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679136719"><span class="annot"><span class="annottext">OpenAIResponse
+</span><span id="line-108"></span><span>            </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679136719"><span class="annot"><span class="annottext">OpenAIResponse
 </span><a href="#local-6989586621679136719"><span class="hs-identifier hs-var">r</span></a></span></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679136720"><span class="annot"><span class="annottext">newMsgs :: [Message]
 </span><a href="#local-6989586621679136720"><span class="hs-identifier hs-var hs-var">newMsgs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Choices -&gt; Message) -&gt; [Choices] -&gt; [Message]
 forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
@@ -325,15 +328,15 @@ Lens' s OpenAIChat -&gt; [Message] -&gt; TypeChainT s m ()
 forall (f :: * -&gt; *) a b. Functor f =&gt; f a -&gt; b -&gt; f b
 </span><span class="hs-operator hs-var">$&gt;</span></span><span> </span><span class="annot"><span class="annottext">[Message]
 </span><a href="#local-6989586621679136720"><span class="hs-identifier hs-var">newMsgs</span></a></span><span>
-</span><span id="line-106"></span><span>
-</span><span id="line-107"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679136726"><span id="local-6989586621679136732"><span id="local-6989586621679136738"><span id="local-6989586621679136744"><span class="annot"><a href="TypeChain.ChatModels.Types.html#RememberingChatModel"><span class="hs-identifier hs-type">RememberingChatModel</span></a></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIChat"><span class="hs-identifier hs-type">OpenAIChat</span></a></span></span></span></span></span><span> </span><span class="hs-keyword">where</span><span> </span><span>
-</span><span id="line-108"></span><span>    </span><span id="local-6989586621679136761"><span class="annot"><span class="annottext">setMemoryEnabledFor :: forall (m :: * -&gt; *) s.
+</span><span id="line-109"></span><span>
+</span><span id="line-110"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679136726"><span id="local-6989586621679136732"><span id="local-6989586621679136738"><span id="local-6989586621679136744"><span class="annot"><a href="TypeChain.ChatModels.Types.html#RememberingChatModel"><span class="hs-identifier hs-type">RememberingChatModel</span></a></span><span> </span><span class="annot"><a href="TypeChain.ChatModels.OpenAI.html#OpenAIChat"><span class="hs-identifier hs-type">OpenAIChat</span></a></span></span></span></span></span><span> </span><span class="hs-keyword">where</span><span> </span><span>
+</span><span id="line-111"></span><span>    </span><span id="local-6989586621679136761"><span class="annot"><span class="annottext">setMemoryEnabledFor :: forall (m :: * -&gt; *) s.
 Monad m =&gt;
 Lens' s OpenAIChat -&gt; Bool -&gt; TypeChainT s m ()
 </span><a href="#local-6989586621679136761"><span class="hs-identifier hs-var hs-var hs-var hs-var">setMemoryEnabledFor</span></a></span></span><span> </span><span id="local-6989586621679136763"><span class="annot"><span class="annottext">Lens' s OpenAIChat
 </span><a href="#local-6989586621679136763"><span class="hs-identifier hs-var">model</span></a></span></span><span> </span><span id="local-6989586621679136764"><span class="annot"><span class="annottext">Bool
 </span><a href="#local-6989586621679136764"><span class="hs-identifier hs-var">status</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span> </span><span>
-</span><span id="line-109"></span><span>        </span><span id="local-6989586621679136765"><span class="annot"><span class="annottext">OpenAIChat
+</span><span id="line-112"></span><span>        </span><span id="local-6989586621679136765"><span class="annot"><span class="annottext">OpenAIChat
 </span><a href="#local-6989586621679136765"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">(s -&gt; OpenAIChat) -&gt; StateT s m OpenAIChat
 forall s (m :: * -&gt; *) a. MonadState s m =&gt; (s -&gt; a) -&gt; m a
 </span><span class="hs-identifier hs-var">gets</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Getting OpenAIChat s OpenAIChat -&gt; s -&gt; OpenAIChat
@@ -341,11 +344,11 @@ forall s (m :: * -&gt; *) a. MonadReader s m =&gt; Getting a s a -&gt; m a
 </span><span class="hs-identifier hs-var">view</span></span><span> </span><span class="annot"><span class="annottext">Getting OpenAIChat s OpenAIChat
 Lens' s OpenAIChat
 </span><a href="#local-6989586621679136763"><span class="hs-identifier hs-var">model</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-110"></span><span>        </span><span class="hs-keyword">case</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">OpenAIChat -&gt; Maybe [Message]
+</span><span id="line-113"></span><span>        </span><span class="hs-keyword">case</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">OpenAIChat -&gt; Maybe [Message]
 </span><a href="TypeChain.ChatModels.OpenAI.html#messages"><span class="hs-identifier hs-var">messages</span></a></span><span> </span><span class="annot"><span class="annottext">OpenAIChat
 </span><a href="#local-6989586621679136765"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><a href="#local-6989586621679136764"><span class="hs-identifier hs-var">status</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-keyword">of</span><span> </span><span>
-</span><span id="line-111"></span><span>            </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Maybe [Message]
+</span><span id="line-114"></span><span>            </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Maybe [Message]
 </span><span class="hs-identifier hs-var">Nothing</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">True</span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">(OpenAIChat -&gt; Identity OpenAIChat) -&gt; s -&gt; Identity s
 Lens' s OpenAIChat
@@ -360,7 +363,7 @@ ASetter s s a b -&gt; (a -&gt; b) -&gt; m ()
 </span><a href="TypeChain.ChatModels.OpenAI.html#messages"><span class="hs-identifier hs-var">messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Message] -&gt; Maybe [Message]
 forall a. a -&gt; Maybe a
 </span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-112"></span><span>            </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span class="annot"><span class="annottext">[Message]
+</span><span id="line-115"></span><span>            </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span class="annot"><span class="annottext">[Message]
 </span><span class="hs-identifier">_</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">False</span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">(OpenAIChat -&gt; Identity OpenAIChat) -&gt; s -&gt; Identity s
 Lens' s OpenAIChat
@@ -375,18 +378,18 @@ ASetter s s a b -&gt; (a -&gt; b) -&gt; m ()
 </span><a href="TypeChain.ChatModels.OpenAI.html#messages"><span class="hs-identifier hs-var">messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Message]
 forall a. Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-113"></span><span>            </span><span class="annot"><span class="annottext">(Maybe [Message], Bool)
+</span><span id="line-116"></span><span>            </span><span class="annot"><span class="annottext">(Maybe [Message], Bool)
 </span><span class="hs-identifier">_</span></span><span>               </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">() -&gt; TypeChainT s m ()
 forall a. a -&gt; StateT s m a
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-comment">-- Do nothing since the status is already matching</span><span>
-</span><span id="line-114"></span><span>
-</span><span id="line-115"></span><span>    </span><span id="local-6989586621679136777"><span class="annot"><span class="annottext">forgetFor :: forall (m :: * -&gt; *) s.
+</span><span id="line-117"></span><span>
+</span><span id="line-118"></span><span>    </span><span id="local-6989586621679136777"><span class="annot"><span class="annottext">forgetFor :: forall (m :: * -&gt; *) s.
 Monad m =&gt;
 Lens' s OpenAIChat -&gt; TypeChainT s m ()
 </span><a href="#local-6989586621679136777"><span class="hs-identifier hs-var hs-var hs-var hs-var">forgetFor</span></a></span></span><span> </span><span id="local-6989586621679136779"><span class="annot"><span class="annottext">Lens' s OpenAIChat
 </span><a href="#local-6989586621679136779"><span class="hs-identifier hs-var">model</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span> </span><span>
-</span><span id="line-116"></span><span>        </span><span id="local-6989586621679136780"><span class="annot"><span class="annottext">OpenAIChat
+</span><span id="line-119"></span><span>        </span><span id="local-6989586621679136780"><span class="annot"><span class="annottext">OpenAIChat
 </span><a href="#local-6989586621679136780"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">(s -&gt; OpenAIChat) -&gt; StateT s m OpenAIChat
 forall s (m :: * -&gt; *) a. MonadState s m =&gt; (s -&gt; a) -&gt; m a
 </span><span class="hs-identifier hs-var">gets</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Getting OpenAIChat s OpenAIChat -&gt; s -&gt; OpenAIChat
@@ -394,15 +397,15 @@ forall s (m :: * -&gt; *) a. MonadReader s m =&gt; Getting a s a -&gt; m a
 </span><span class="hs-identifier hs-var">view</span></span><span> </span><span class="annot"><span class="annottext">Getting OpenAIChat s OpenAIChat
 Lens' s OpenAIChat
 </span><a href="#local-6989586621679136779"><span class="hs-identifier hs-var">model</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-117"></span><span>        </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">OpenAIChat -&gt; Maybe [Message]
+</span><span id="line-120"></span><span>        </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">OpenAIChat -&gt; Maybe [Message]
 </span><a href="TypeChain.ChatModels.OpenAI.html#messages"><span class="hs-identifier hs-var">messages</span></a></span><span> </span><span class="annot"><span class="annottext">OpenAIChat
 </span><a href="#local-6989586621679136780"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="hs-keyword">of</span><span> </span><span>
-</span><span id="line-118"></span><span>            </span><span class="annot"><span class="annottext">Maybe [Message]
+</span><span id="line-121"></span><span>            </span><span class="annot"><span class="annottext">Maybe [Message]
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">() -&gt; TypeChainT s m ()
 forall a. a -&gt; StateT s m a
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-comment">-- Do nothing since we're already forgetting</span><span>
-</span><span id="line-119"></span><span>            </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span class="annot"><span class="annottext">[Message]
+</span><span id="line-122"></span><span>            </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span class="annot"><span class="annottext">[Message]
 </span><span class="hs-identifier">_</span></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">(OpenAIChat -&gt; Identity OpenAIChat) -&gt; s -&gt; Identity s
 Lens' s OpenAIChat
 </span><a href="#local-6989586621679136779"><span class="hs-identifier hs-var">model</span></a></span><span> </span><span class="annot"><span class="annottext">((OpenAIChat -&gt; Identity OpenAIChat) -&gt; s -&gt; Identity s)
@@ -416,8 +419,8 @@ ASetter s s a b -&gt; (a -&gt; b) -&gt; m ()
 </span><a href="TypeChain.ChatModels.OpenAI.html#messages"><span class="hs-identifier hs-var">messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Message] -&gt; Maybe [Message]
 forall a. a -&gt; Maybe a
 </span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-120"></span><span>
-</span><span id="line-121"></span><span>    </span><span id="local-6989586621679136791"><span class="annot"><span class="annottext">memorizes :: forall (m :: * -&gt; *) s.
+</span><span id="line-123"></span><span>
+</span><span id="line-124"></span><span>    </span><span id="local-6989586621679136791"><span class="annot"><span class="annottext">memorizes :: forall (m :: * -&gt; *) s.
 Monad m =&gt;
 Lens' s OpenAIChat -&gt; [Message] -&gt; TypeChainT s m ()
 </span><a href="TypeChain.ChatModels.Types.html#memorizes"><span class="hs-identifier hs-var hs-var hs-var hs-var">memorizes</span></a></span></span><span> </span><span id="local-6989586621679136792"><span class="annot"><span class="annottext">Lens' s OpenAIChat
@@ -449,7 +452,7 @@ forall a. a -&gt; Maybe a
 forall a. MsgList a =&gt; a -&gt; [Message]
 </span><a href="TypeChain.ChatModels.Types.html#toMsgList"><span class="hs-identifier hs-var">toMsgList</span></a></span><span> </span><span class="annot"><span class="annottext">[Message]
 </span><a href="#local-6989586621679136793"><span class="hs-identifier hs-var">msgs</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-122"></span><span>    </span><span id="local-6989586621679136800"><span class="annot"><span class="annottext">rememberFor :: forall (m :: * -&gt; *) s.
+</span><span id="line-125"></span><span>    </span><span id="local-6989586621679136800"><span class="annot"><span class="annottext">rememberFor :: forall (m :: * -&gt; *) s.
 Monad m =&gt;
 Lens' s OpenAIChat -&gt; TypeChainT s m [Message]
 </span><a href="#local-6989586621679136800"><span class="hs-identifier hs-var hs-var hs-var hs-var">rememberFor</span></a></span></span><span> </span><span id="local-6989586621679136802"><span class="annot"><span class="annottext">Lens' s OpenAIChat
@@ -469,4 +472,4 @@ forall s (m :: * -&gt; *) a. MonadReader s m =&gt; Getting a s a -&gt; m a
 </span><span class="hs-identifier hs-var">view</span></span><span> </span><span class="annot"><span class="annottext">Getting OpenAIChat s OpenAIChat
 Lens' s OpenAIChat
 </span><a href="#local-6989586621679136802"><span class="hs-identifier hs-var">model</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-123"></span></pre></body></html>
+</span><span id="line-126"></span></pre></body></html>

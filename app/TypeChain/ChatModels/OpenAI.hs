@@ -70,8 +70,11 @@ instance FromJSON OpenAIResponse where
 -- | Create an OpenAI chat model with default values 
 --
 -- Model: GPT-3.5-Turbo
+--
 -- Memorization: Enabled 
+--
 -- Temperature: 0.7 
+--
 -- ApiKey: <empty value>
 initOpenAIChat :: OpenAIChat
 initOpenAIChat = OpenAIChat { chatModel   = GPT35Turbo 
