@@ -1,6 +1,6 @@
 cabal-version:      2.4
 name:               typechain
-version:            0.1.0.0
+version:            0.1.0.1
 
 -- A short (one-line) description of the package.
 synopsis:           An implementation of LangChain in Haskell
@@ -20,6 +20,7 @@ maintainer:         adam.brohl.w@gmail.com
 copyright:          2024 Adam Brohl
 category:           AI
 extra-source-files: CHANGELOG.md, LICENSE.md, README.md
+tested-with:        GHC == 9.4.7, GHC == 9.4.8
 
 executable typechain-exe
     main-is:          Main.hs
@@ -32,7 +33,7 @@ executable typechain-exe
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
-    build-depends:    base                  ^>=4.17.2.0, 
+    build-depends:    base                  >=4.17.2.0 && < 5, 
                       aeson                 >= 2.2.1 && < 2.3,
                       template-haskell      >= 2.19.0 && < 2.20,
                       bytestring            >= 0.11.5 && < 0.12,
@@ -47,11 +48,12 @@ executable typechain-exe
     ghc-options:      -Wunused-binds
 
 library 
-    exposed-modules:  TypeChain.ChatModels 
+    exposed-modules:  DotEnv 
+                      TypeChain.ChatModels 
                       TypeChain.ChatModels.Types
                       TypeChain.ChatModels.OpenAI
                       TypeChain.ChatModels.PromptTemplate
-    build-depends:    base                  ^>=4.17.2.0, 
+    build-depends:    base                  >=4.17.2.0 && < 5, 
                       aeson                 >= 2.2.1 && < 2.3,
                       template-haskell      >= 2.19.0 && < 2.20,
                       bytestring            >= 0.11.5 && < 0.12,
