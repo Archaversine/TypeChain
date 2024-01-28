@@ -20,7 +20,7 @@ maintainer:         adam.brohl.w@gmail.com
 copyright:          2024 Adam Brohl
 category:           AI
 extra-source-files: CHANGELOG.md, LICENSE.md, README.md
-tested-with:        GHC == 9.4.7, GHC == 9.4.8
+tested-with:        GHC == 9.6.3
 
 executable typechain-exe
     main-is:          Main.hs
