@@ -1,9 +1,12 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE ViewPatterns #-}
+{-# LANGUAGE TupleSections #-}
 {-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE TypeApplications #-}
 
-module TypeChain.ChatModels.PromptTemplate (makeTemplate, user, assistant, system) where
+module TypeChain.ChatModels.PromptTemplate (ToPrompt(..), makeTemplate, user, assistant, system) where
 
+import Data.Char (toLower)
 import Data.List (nub)
 
 import Language.Haskell.TH
@@ -13,6 +16,9 @@ import TypeChain.ChatModels.Types
 data TemplateToken = ConstString String | Var String deriving Eq
 
 type PromptTemplate = (Q Exp, [Name])
+
+class ToPrompt a where 
+    toPrompt :: a -> [Message]
 
 user :: String -> Q PromptTemplate
 user xs = toTemplate xs [| UserMessage |]
@@ -25,20 +31,13 @@ system xs = toTemplate xs [| SystemMessage |]
 
 toTemplate :: String -> Q Exp -> Q PromptTemplate
 toTemplate xs f = do 
+    let tempParam = mkName "template"
+
     let tokens = parseTemplateTokens xs
+        expr   = tokensToExpr tempParam tokens
         names  = map mkName $ nub $ getVarTokens tokens
-        params = map varP names
-        func   = lamE params (appE f $ tokensToExpr tokens)
-        expr   = foldl appE func (map varE names)
 
-    return (expr, names)
-
-makeTemplate :: [Q PromptTemplate] -> Q Exp
-makeTemplate xs = do 
-    (exps, ps) <- unzip <$> sequence xs
-    let params = nub $ concat ps
-    
-    lamE (map varP params) $ listE exps
+    return (appE f expr, names)
 
 parseTemplateTokens :: String -> [TemplateToken]
 parseTemplateTokens [] = [] 
@@ -52,7 +51,36 @@ getVarTokens [] = []
 getVarTokens (Var x : xs) = x : getVarTokens xs
 getVarTokens (_     : xs) = getVarTokens xs
 
-tokensToExpr :: [TemplateToken] -> Q Exp
-tokensToExpr [] = [| "" |]
-tokensToExpr (ConstString x : xs) = [| x ++ $(tokensToExpr xs) |]
-tokensToExpr (Var x : xs) = appE [| (++) |] (varE (mkName x)) `appE` tokensToExpr xs
+tokensToExpr :: Name -> [TemplateToken] -> Q Exp
+tokensToExpr _ [] = [| "" |]
+tokensToExpr name (ConstString x : xs) = [| x ++ $(tokensToExpr name xs) |]
+tokensToExpr name (Var x : xs) = appE [| (++) |] (appE (varE $ mkName x) (varE name)) `appE` tokensToExpr name xs
+
+
+-- | Given a typename and a list of messages, generate a data type and a function to construct it.
+--
+-- Example: `makeTemplate "Translate" [system "translate {a} to {b}.", user "{text}"]`
+--
+-- This generates a record named @Translate@ with fields @a@, @b@, and @text@. 
+-- It also generates a function @mkTranslate :: String -> String -> String -> [Message]@.
+-- To allow for quick and easy construction of the prompt if needed. Otherwise, you can use the 
+-- generated data type in conjunction with the `toPrompt` function to be more explicit.
+makeTemplate :: String -> [Q PromptTemplate] -> Q [Dec] 
+makeTemplate name xs = do 
+    let typeName = mkName name
+        funcName = mkName ("mk" ++ name)
+
+    (exps, concat -> nub -> names) <- unzip <$> sequence xs
+
+    exps'   <- sequence exps
+    varbang <- bang sourceNoUnpack sourceStrict
+
+    let recordFields      = map (, varbang, ConT ''String) names :: [VarBangType]
+        promptFunc        = FunD 'toPrompt [Clause [VarP $ mkName "template"] (NormalB $ ListE exps') []]
+        filledConstructor = foldl AppE (ConE typeName) (map VarE names)
+        mkFuncClause      = Clause (map VarP names) (NormalB $ AppE (VarE 'toPrompt) filledConstructor) []
+
+    return [ DataD     [] typeName [] Nothing [RecC typeName recordFields] []
+           , InstanceD Nothing [] (AppT (ConT ''ToPrompt) (ConT typeName)) [promptFunc]
+           , FunD      funcName [mkFuncClause]
+           ]

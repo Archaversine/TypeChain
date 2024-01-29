@@ -11,16 +11,20 @@ import TypeChain.ChatModels
 
 import DotEnv
 
-chatPrompt :: String -> [Message]
-chatPrompt = $(makeTemplate [ system "You are a helpful assistant who generates comma separated lists. A user will pass in a category, and you should generate 5 objects in that category in a comma separated list. ONLY return a comma separated list, and nothing more."
-                            , user "{text}"
-                            ])
+makeTemplate "Category" [ system "You are a helpful assistant who generates comma separated lists. A user will pass in a category, and you should generate 5 objects in that category in a comma separated list. ONLY return a comma separated list, and nothing more."
+                        , user "{categoryName}"
+                        ]
+
+--chatPrompt :: String -> [Message]
+--chatPrompt = $(makeTemplate [ system "You are a helpful assistant who generates comma separated lists. A user will pass in a category, and you should generate 5 objects in that category in a comma separated list. ONLY return a comma separated list, and nothing more."
+--                            , user "{text}"
+--                            ])
 
 toCommaList :: [Message] -> [String]
 toCommaList = concatMap (splitOn ", " . view content)
 
 convo :: String -> TypeChain OpenAIChat [String]
-convo prompt = toCommaList <$> predict (chatPrompt prompt)
+convo prompt = toCommaList <$> predict (mkCategory prompt)
 
 main :: IO ()
 main = do 
