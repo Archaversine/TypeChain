@@ -158,15 +158,37 @@ The same code can be implemented in Typechain:
 
 import Typechain.ChatModels
 
-chatPrompt :: String -> String -> String -> [Message]
-chatPrompt = $(makeTemplate [ system "You are a helpful assistant that translates {from} to {to}."
-                            , user "{text}"
-                            ])
+makeTemplate "Translate" [ system "You are an assistant that translates {lang1} to {lang2}."
+                         , user "{text}."
+                         ]
 
+-- Fill in the template quick and easy
 messages :: [Message]
-messages = chatPrompt "English" "French" "Hello, World!"
+messages = mkTranslate "English" "French" "Hello, World!"
+
+-- Fill in the template explicitly.
+messages' :: [Message]
+messages' = toPrompt $ Translate { lang1 = "English", lang2 = "French", text = "Hello!"}
 ```
 
-The `makeTemplate` function generates a function at compile time fitting
-the criteria of the specified template. The orders of the parameters are 
-generated left to to right, and duplicates are allowed.
+The `makeTemplate` function generates code for a record type at compile time 
+where each field represents a placeholder in the specified string. `makeTemplate`
+will also create an instance for `ToPrompt`, allowing you to use the `toPrompt`
+function to convert the record type into a list of messages. And for smaller 
+templates, `makeTemplate` also generates a helper function (in this case `mkTranslate`)
+that takes in all of the prompt parameters and returns a String.
+
+So for the above example, the `makeTemplate` function would expand to the 
+following code:
+
+```haskell 
+data Translate = Translate { lang1 :: String, lang2 :: String, text :: String}
+
+instance ToPrompt Translate where 
+    toPrompt template = [ Message System $ "You are an assistant that translates" ++ lang1 template ++ " to " ++ lang2 template ++ "."
+                        , Message User $ text template 
+                        ]
+
+mkTranslate :: String -> String -> String -> [Messages]
+mkTranslate lang1 lang2 text = toPrompt $ Translate lang1 lang2 text
+```
